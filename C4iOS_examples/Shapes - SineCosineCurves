@@ -1,0 +1,66 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Shape *curve1, *curve2, *curve3;
+int canvasWidth, canvasHeight;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    self.canvas.backgroundColor = [UIColor blackColor];
+    
+    for (int x = 0; x <= canvasWidth; x+=2) {
+        CGPoint curvePoints1[canvasWidth];
+        float y = [C4Math sin:DegreesToRadians(x*360/canvasWidth)];
+        y *= canvasHeight/2.1;
+        y += canvasHeight/2;
+        curvePoints1[x] = CGPointMake(x, y);
+        curve1 = [C4Shape polygon:curvePoints1 pointCount:canvasWidth];
+        curve1.strokeColor = [UIColor clearColor];
+        curve1.fillColor = [UIColor colorWithRed:1.0f green:0.2f blue:0.2f alpha:1.0f];
+        [self.canvas addShape:curve1];
+    }
+    
+    for (int x = 0; x <= canvasWidth; x+=2) {
+        CGPoint curvePoints2[canvasWidth+1];
+        float y = [C4Math sin:DegreesToRadians(x*360/canvasWidth)];
+        y *=  canvasHeight/6;
+        y +=  canvasHeight/2;
+        curvePoints2[x] = CGPointMake(x/2, y);
+        curve2 = [C4Shape polygon:curvePoints2 pointCount:canvasWidth];
+        curve2.strokeColor = [UIColor clearColor];
+        curve2.fillColor = [UIColor colorWithRed:0.2f green:0.4f blue:1.0f alpha:1.0f];
+        [self.canvas addShape:curve2];
+    }
+    
+    for (int x = 0; x <= canvasWidth/2; x+=2) {
+        if (x >= canvasWidth/2) {
+            curve3.strokeColor = [UIColor blackColor];
+        }
+        else curve3.strokeColor = [UIColor clearColor];
+        CGPoint curvePoints3[canvasWidth];
+        float y = [C4Math cos:DegreesToRadians(x*2*360/canvasWidth)];
+        y *= -canvasHeight/6;
+        y +=  canvasHeight*2/3;
+        curvePoints3[x] = CGPointMake(x+canvasWidth/2, y);
+        curve3 = [C4Shape polygon:curvePoints3 pointCount:canvasWidth];
+        curve3.fillColor = [UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.0f];
+        [self.canvas addShape:curve3];
+    }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
+@end

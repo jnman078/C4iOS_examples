@@ -1,0 +1,68 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+@interface C4WorkSpace (private)
+-(void)calcWave;
+-(void)renderWave;
+@end
+
+C4Shape *point;
+int xspacing = 8;
+int w = 416;
+int maxwaves = 6;
+float theta = 0.0f;
+float amplitude[6];
+float dx[6];
+float yValueCount = 51;
+float yValues[51];
+
+@implementation C4WorkSpace
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor blackColor];
+    
+    for(int i = 0; i < maxwaves; i++) {
+        amplitude[i] = [C4Math randomIntBetweenA:10 andB:30];
+        float period = [C4Math randomIntBetweenA:100 andB:300];
+        dx[i] = (TWO_PI / (float)period) * xspacing;
+    }
+    
+    [self calcWave];
+    [self renderWave];
+}
+
+-(void)calcWave {
+    theta += 0.02;
+    for(int i = 0; i < yValueCount; i++) {
+        yValues[i] = 0;
+    }
+    for(int j = 0; j < maxwaves; j++) {
+        float x = theta;
+        for(int i = 0; i < yValueCount; i++) {
+            if(j%2 == 0){
+                yValues[i] += [C4Math sin:x]*amplitude[j];
+            }
+            else {
+                yValues[i] += [C4Math cos:x]*amplitude[j];
+            }
+            x += dx[j];
+        }
+    }
+}
+
+-(void)renderWave {
+    for(int x = 0; x < yValueCount; x++) {
+        point = [C4Shape ellipse:CGRectMake(x*xspacing, self.canvas.bounds.size.width/2 + yValues[x], 16, 16)];
+    }
+    point.strokeColor = [UIColor clearColor];
+    point.fillColor = [UIColor colorWithWhite:1.0f alpha:0.6f];
+    [self.canvas addShape:point];
+}
+@end

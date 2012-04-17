@@ -1,0 +1,111 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+@interface C4WorkSpace (private)
+-(float)sinGraph:(float)value;
+-(float)quad:(float)value;
+-(float)quadHump:(float)value;
+-(float)hump:(float)value;
+-(float)squared:(float)value;
+@end
+
+C4Shape *line1, *line2, *line3, *line4, *line5;
+int canvasWidth, canvasHeight;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    self.canvas.backgroundColor = [UIColor blackColor];
+    
+    for (int i = 0; i < canvasWidth; i++) {
+        float value = [self sinGraph:((float)i/canvasWidth)]*canvasHeight;
+        line1 = [C4Shape rect:CGRectMake(i, value, 1, 1)];
+        line1.fillColor = [UIColor clearColor];
+        line1.lineWidth = 1;
+        line1.strokeColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+        [self.canvas addShape:line1];
+    }
+    
+    for (int i = 0; i < canvasWidth; i++) {
+        float value = [self quad:((float)i)/canvasWidth]*canvasHeight;
+        line2 = [C4Shape rect:CGRectMake(i, value, 1, 1)];
+        line2.fillColor = [UIColor clearColor];
+        line2.lineWidth = 1;
+        line2.strokeColor = [UIColor colorWithWhite:0.4f alpha:1.0f];
+        [self.canvas addShape:line2];
+    }
+    
+    for (int i = 0; i < canvasWidth; i++) {
+        float value = [self quadHump:((float)i)/canvasWidth]*canvasHeight;
+        line3 = [C4Shape rect:CGRectMake(i, value, 1, 1)];
+        line3.fillColor = [UIColor clearColor];
+        line3.lineWidth = 1;
+        line3.strokeColor = [UIColor colorWithWhite:0.6f alpha:1.0f];
+        [self.canvas addShape:line3];
+    }
+    
+    for (int i = 0; i < canvasWidth; i++) {
+        float value = [self hump:((float)i)/canvasWidth]*canvasHeight;
+        line4 = [C4Shape rect:CGRectMake(i, value, 1, 1)];
+        line4.fillColor = [UIColor clearColor];
+        line4.lineWidth = 1;
+        line4.strokeColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
+        [self.canvas addShape:line4];
+    }
+    
+    for (int i = 0; i < canvasWidth; i++) {
+        float value = [self squared:((float)i)/canvasWidth]*canvasHeight;
+        line5 = [C4Shape rect:CGRectMake(i, value, 1, 1)];
+        line5.fillColor = [UIColor clearColor];
+        line5.lineWidth = 1;
+        line5.strokeColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
+        [self.canvas addShape:line5];
+    }
+}
+
+-(float)sinGraph:(float)value {
+    value = (value - 0.5) * 1.0; //scale from -1 to 1
+    value = [C4Math sin:(value*PI)]/2 + 0.5;
+    return value;
+}
+
+-(float)squared:(float)value {
+    value = [C4Math pow:value raisedTo:2];
+    // Following line is equal to the above line
+    // value = value * value;
+    return value;
+}
+
+-(float)quad:(float)value {
+    value = [self squared:[self squared:value]];
+    // Following line is equal to the above line
+    // value = value * value * value * value;
+    return value;
+}
+
+-(float)quadHump:(float)value {
+    value = (value - 0.5) * 2; // scale from -2 to 2
+    value = [self quad:value] * 16;
+    return value;
+}
+
+-(float)hump:(float)value {
+    value = (value - 0.5) * 2; // scale from -2 to 2
+    value = [self squared:value];
+    
+    if (value > 1) {
+        value = 1;
+    }
+    return 1 - value;
+}
+@end

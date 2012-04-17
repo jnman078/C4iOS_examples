@@ -1,0 +1,37 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Shape *slices;
+int canvasWidth, canvasHeight;
+int diameter = 300;
+int angs[] = {30,10,45,35,60,38,75,67};
+float lastAng = 0;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor blackColor];
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    
+    for (int i = 0; i < 8; i++) {
+        slices = [C4Shape arcWithCenter:CGPointMake(canvasWidth/2, canvasHeight/2) 
+                                 radius:diameter/2 
+                             startAngle:lastAng 
+                               endAngle:lastAng+angs[i]+5];
+        slices.strokeColor = [UIColor clearColor];
+        slices.fillColor = [UIColor colorWithWhite:RGBToFloat(angs[i]*3) alpha:1.0f];
+        lastAng += angs[i];
+        [self.canvas addShape:slices];
+    }
+}
+
+@end

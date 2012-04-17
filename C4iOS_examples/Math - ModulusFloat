@@ -1,0 +1,42 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Shape *line, *slider;
+int num;
+double c;
+
+@implementation C4WorkSpace 
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor blackColor];
+    num = 20;
+    c = 0;
+    
+    c += .09;
+    for(double i = 1; i < self.canvas.bounds.size.height/num; i++){
+        //cocoa cannot perform modulus division ( % ) with floats
+        //e.g. 100%(5.2) won't work
+        //since it works with only ints, so use fmodf() if you need
+        //the following equation translates to (i%c)*i*i
+        float x = fmodf(c,(float)i)*i*i;
+        CGPoint lineArray[2] = {
+          CGPointMake(0, i*num), CGPointMake(x, i*num)  
+        };
+        line = [C4Shape line:lineArray];
+        slider = [C4Shape rect:CGRectMake(x, i*num-num/2, 8, num)];
+    }
+    line.strokeColor = [UIColor whiteColor];
+    line.fillColor = [UIColor clearColor];
+    slider.strokeColor = [UIColor clearColor];
+    slider.fillColor = [UIColor whiteColor];
+}
+
+@end

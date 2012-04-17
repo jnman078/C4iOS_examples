@@ -1,0 +1,73 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+int canvasWidth, canvasHeight;
+CGPoint centerPos;
+
+C4Shape *wheel, *thing;
+C4Shape *bbox;
+int points = 5;
+float rad = 150.0f;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
+    self.canvas.backgroundColor = [UIColor blackColor];
+    
+    CGPoint polyPoints[5] = {
+        CGPointMake(200, 600),
+        CGPointMake(400, 400),
+        CGPointMake(550, 540),
+        CGPointMake(400, 250),
+        CGPointMake(200, 600)
+    };
+    
+//    CGPoint polyPoints[5] = {
+//        CGPointMake(400, 400),
+//        CGPointMake(550, 540),
+//        CGPointMake(400, 250),
+//        CGPointMake(200, 600),
+//        CGPointMake(400, 400)
+//    };
+    thing = [C4Shape polygon:polyPoints pointCount:5];
+    [self.canvas addShape:thing];
+    
+    CGPoint nGonPoints[points+1];
+    for (int i = 0; i <= points; i++) {
+        float angle = TWO_PI * i/points;
+        CGFloat x = rad * [C4Math cos:angle];
+        CGFloat y = rad * [C4Math sin:angle];
+        nGonPoints[i] = CGPointMake(x + centerPos.x, y + centerPos.y);
+    }
+    
+    bbox = [C4Shape rect:CGRectMake(thing.bounds.origin.x, thing.bounds.origin.y, thing.bounds.size.width, thing.bounds.size.height)];
+    bbox.fillColor = [UIColor clearColor];
+    bbox.strokeColor = [UIColor greenColor];
+    [self.canvas addShape:bbox];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint touchPoint = [[touches anyObject] locationInView:self.canvas];
+    thing.animationDuration = 5.0f;
+//    thing.layer.anchorPoint = CGPointMake(400, 400);
+    thing.transform = CGAffineTransformMakeRotation(3*PI/4);
+    C4Log(@"bounidng box origin.X:%d", thing.origin.x);
+    C4Log(@"bounidng box origin.Y:%d", thing.origin.y);
+    C4Log(@"bounidng box center.X:%d", thing.center.x);
+    C4Log(@"bounidng box center.Y:%d", thing.center.y);
+    C4Log(@"bounidng box anchorPoint.X:%d", thing.layer.anchorPoint.x);
+    C4Log(@"bounidng box anchorPoint.Y:%d", thing.layer.anchorPoint.y);
+}
+
+@end

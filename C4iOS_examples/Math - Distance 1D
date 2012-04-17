@@ -1,0 +1,99 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Shape *bar1, *bar2, *bar3, *bar4;
+CGPoint touchPoint;
+int thin = 16;
+int thick = 72;
+//float x1 = 134.0f;
+//float x2 = 44.0f;
+//float x3 = 58.0f;
+//float x4 = 120.0f;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor blackColor];
+    
+//    float mx = touchPoint.x * 0.4 - self.canvas.bounds.size.width/5;
+    
+    bar1 = [C4Shape rect:CGRectMake(-2*thin, 0, thin, self.canvas.bounds.size.height/2)];
+    bar1.fillColor = [UIColor colorWithWhite:0.4f alpha:1];
+    bar1.strokeColor = [UIColor clearColor];
+    [self.canvas addShape:bar1];
+    
+    bar2 = [C4Shape rect:CGRectMake(-2*thick, 0, thick, self.canvas.bounds.size.height/2)];
+    bar2.fillColor = [UIColor colorWithWhite:0.8f alpha:1];
+    bar2.strokeColor = [UIColor clearColor];
+    [self.canvas addShape:bar2];
+    
+    bar3 = [C4Shape rect:CGRectMake(768+thin, self.canvas.bounds.size.height/2, thin, self.canvas.bounds.size.height/2)];
+    bar3.fillColor = [UIColor colorWithWhite:0.4f alpha:1];
+    bar3.strokeColor = [UIColor clearColor];
+    [self.canvas addShape:bar3];
+    
+    bar4 = [C4Shape rect:CGRectMake(768+thick, self.canvas.bounds.size.height/2, thick, self.canvas.bounds.size.height/2)];
+    bar4.fillColor = [UIColor colorWithWhite:0.8f alpha:1];
+    bar4.strokeColor = [UIColor clearColor];
+    [self.canvas addShape:bar4];
+    
+//    x1 += mx/16;
+//    x2 += mx/64;
+//    x3 -= mx/16;
+//    x4 -= mx/64;
+//    
+//    if (x1 < -thick) {
+//        x1 = self.canvas.bounds.size.width;
+//    }
+//    if (x1 > self.canvas.bounds.size.width) {
+//        x1 = -thick;
+//    }
+//    if (x2 < -thin) {
+//        x2 = self.canvas.bounds.size.width;
+//    }
+//    if (x2 > self.canvas.bounds.size.width) {
+//        x2 = -thin;
+//    }
+//    if (x3 < -thick) {
+//        x3 = self.canvas.bounds.size.width;
+//    }
+//    if (x3 > self.canvas.bounds.size.width) {
+//        x3 = -thick;
+//    }
+//    if (x4 < -thin) {
+//        x4 = self.canvas.bounds.size.width;
+//    }
+//    if (x4 > self.canvas.bounds.size.width) {
+//        x4 = -thin;
+//    }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    touchPoint = [[touches anyObject] locationInView:self.canvas];
+    
+    bar1.animationDuration = 4.0f;
+    bar1.animationOptions = LINEAR | REPEAT;
+    bar1.origin = CGPointMake(768+thin, 0);
+    
+    bar2.animationDuration = 2.0f;
+    bar2.animationOptions = LINEAR | REPEAT;
+    bar2.origin = CGPointMake(768+thick, 0);
+    
+    bar3.animationDuration = 4.0f;
+    bar3.animationOptions = LINEAR | REPEAT;
+    bar3.origin = CGPointMake(-2*thin, self.canvas.bounds.size.height/2);
+    
+    bar4.animationDuration = 2.0f;
+    bar4.animationOptions = LINEAR | REPEAT;
+    bar4.origin = CGPointMake(-2*thick, self.canvas.bounds.size.height/2);
+}
+
+@end

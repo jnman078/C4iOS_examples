@@ -1,0 +1,37 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+@implementation C4WorkSpace
+
+int totalPoints;
+float steps;
+int randomValue;
+
+-(void)setup {
+    totalPoints = self.canvas.bounds.size.width;
+    steps = totalPoints + 1;
+    randomValue = 0;
+    self.canvas.backgroundColor = [UIColor blackColor];
+    
+    for (int i = 1; i < steps; i++) {
+        int mod = 0;
+        while (mod == 0) {
+            mod = [C4Math randomIntBetweenA:-1 andB:1];
+        }
+        C4Shape *points = [C4Shape rect:CGRectMake(self.canvas.bounds.size.width/steps*i, self.canvas.bounds.size.height/2 + mod*randomValue, 1, 1)];
+        points.fillColor = [UIColor whiteColor];
+        points.strokeColor = [UIColor clearColor];
+        [self.canvas addShape:points];
+        randomValue += [C4Math randomIntBetweenA:-10 andB:10];
+    }
+}
+
+@end

@@ -1,0 +1,35 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Shape *lines;
+int canvasWidth, canvasHeight;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    
+    for (int i = 0; i < canvasWidth; i++) {
+        float r = RGBToFloat([C4Math randomInt:255]);
+        float x = [C4Math randomIntBetweenA:0 andB:canvasWidth];
+        CGPoint linePoints[2] = {
+            CGPointMake(i, 0),
+            CGPointMake(x, canvasHeight)
+        };
+        lines = [C4Shape line:linePoints];
+        lines.strokeColor = [UIColor colorWithWhite:r alpha:RGBToFloat(100)];
+        lines.lineWidth = 10;
+        [self.canvas addShape:lines];
+    }
+}
+
+@end

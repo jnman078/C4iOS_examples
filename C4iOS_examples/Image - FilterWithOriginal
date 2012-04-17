@@ -1,0 +1,40 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Image *backgroundImage;
+CGPoint centerPos;
+int canvasWidth, canvasHeight;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    centerPos = CGPointMake(canvasWidth/2.0f, canvasHeight/2.0f);
+    
+    backgroundImage = [C4Image imageNamed:@"C4Sky.png"];
+//    [backgroundImage gaussianBlur:4];
+    
+//    backgroundImage.drawFilteredImage = NO;
+    backgroundImage.center = centerPos;
+    [self.canvas addImage:backgroundImage];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint touchPoint = [[touches anyObject] locationInView:self.canvas];
+    /*
+     Filtering creates a copy of an original image, and draws only the copy...
+     */
+//    backgroundImage.drawFilteredImage = YES;
+    backgroundImage.center = touchPoint;
+}
+
+@end

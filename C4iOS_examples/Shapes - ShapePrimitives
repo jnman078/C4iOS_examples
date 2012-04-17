@@ -1,0 +1,73 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Shape *arc;
+C4Shape *tri1, *tri2;
+C4Shape *square;
+C4Shape *quad;
+C4Shape *circle;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor blackColor];
+    
+    CGPoint triPoints1[3] = {
+        CGPointMake(10, 10),
+        CGPointMake(10, 320),
+        CGPointMake(45, 200)
+    };
+    
+    CGPoint quadPoints[4] = {
+        CGPointMake(105, 0),
+        CGPointMake(120, 10),
+        CGPointMake(120, 320),
+        CGPointMake(80, 200)
+    };
+    
+    CGPoint triPoints2[3] = {
+        CGPointMake(160, 10),
+        CGPointMake(195, 320),
+        CGPointMake(160, 200)
+    };
+    
+    arc = [C4Shape arcWithCenter:CGPointMake(235, 180) 
+                          radius:25 
+                      startAngle:-45 
+                        endAngle:45];
+    tri1 = [C4Shape triangle:triPoints1];
+    square = [C4Shape rect:CGRectMake(315, 245, 35, 35)];
+    quad = [C4Shape polygon:quadPoints pointCount:4];
+    circle = [C4Shape ellipse:CGRectMake(320, 40, 40, 40)];
+    tri2 = [C4Shape triangle:triPoints2];
+    
+    arc.strokeColor = [UIColor clearColor];
+    arc.alpha = 0.9f;
+    tri1.strokeColor = [UIColor clearColor];
+    tri1.alpha = 0.9f;
+    square.strokeColor = [UIColor clearColor];
+    square.alpha = 0.9f;
+    quad.strokeColor = [UIColor clearColor];
+    quad.alpha = 0.9f;
+    circle.strokeColor = [UIColor clearColor];
+    circle.alpha = 0.9f;
+    tri2.strokeColor = [UIColor clearColor];
+    tri2.alpha = 0.9f;
+    
+    [self.canvas addShape:arc];
+    [self.canvas addShape:tri1];
+    [self.canvas addShape:square];
+    [self.canvas addShape:quad];
+    [self.canvas addShape:circle];
+    [self.canvas addShape:tri2];
+}
+
+@end

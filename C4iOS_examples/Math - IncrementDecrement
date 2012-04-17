@@ -1,0 +1,66 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+@implementation C4WorkSpace
+
+C4Shape *lines1, *lines2;
+//CGPoint lineArray1[2], lineArray2[2];
+float a, b;
+float colorIncrement;
+BOOL direction;
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor blackColor];
+    a = 0;
+    b = self.canvas.bounds.size.width;
+    colorIncrement = 1.0f/(float)self.canvas.bounds.size.width;
+    direction = YES;
+    
+    CGPoint lineArray1[2] = {
+        CGPointMake(a, 0),
+        CGPointMake(a, self.canvas.bounds.size.height/2)
+    };
+    
+    
+    CGPoint lineArray2[2] = {
+        CGPointMake(b, self.canvas.bounds.size.height/2+1),
+        CGPointMake(b, self.canvas.bounds.size.height)
+    };
+    
+    lines1 = [C4Shape line:lineArray1];
+    a++;
+    if (a > self.canvas.bounds.size.width) {
+        a = 0;
+        direction = !direction;
+    }
+    if (direction) {
+        lines1.strokeColor = [UIColor colorWithWhite:a*colorIncrement alpha:1];
+    } else {
+        lines1.strokeColor = [UIColor colorWithWhite:1-a*colorIncrement alpha:1];
+    }
+    lines1.fillColor = [UIColor clearColor];
+    [self.canvas addShape:lines1];
+    
+    lines2 = [C4Shape line:lineArray2];
+    b--;
+    if (b < 0) {
+        b = self.canvas.bounds.size.width;
+    }
+    if (direction) {
+        lines2.strokeColor = [UIColor colorWithWhite:1-b*colorIncrement alpha:1];
+    } else {
+        lines2.strokeColor = [UIColor colorWithWhite:b*colorIncrement alpha:1];
+    }
+    lines2.fillColor = [UIColor clearColor];
+    [self.canvas addShape:lines2];
+}
+
+@end

@@ -1,0 +1,58 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
+
+#import "C4WorkSpace.h"
+
+C4Shape *body, *head;
+C4Shape *eyeL, *eyeR;
+C4Shape *legL, *legR;
+CGPoint centerPos;
+int bodyW = 50;
+int bodyH = 250;
+int headD = 150;
+int eyeW = 40;
+int eyeH = 80;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor colorWithWhite:0.75f alpha:1.0f];
+    centerPos = CGPointMake(self.canvas.bounds.size.width/2.0f, self.canvas.bounds.size.height/2.0f);
+    
+    CGPoint legPointsL[2] = {
+        CGPointMake(centerPos.x-25, centerPos.y+125),
+        CGPointMake(centerPos.x-50, centerPos.y+150)
+    };
+    
+    CGPoint legPointsR[2] = {
+        CGPointMake(centerPos.x+25, centerPos.y+125),
+        CGPointMake(centerPos.x+50, centerPos.y+150)
+    };
+    
+    body = [C4Shape rect:CGRectMake(centerPos.x-bodyW/2, centerPos.y-bodyH/2, bodyW, bodyH)];
+    head = [C4Shape ellipse:CGRectMake(centerPos.x-headD/2, centerPos.x-headD/2-60, headD, headD)];
+    eyeL = [C4Shape ellipse:CGRectMake(centerPos.x-eyeW/2-45, centerPos.x-eyeH/2-60, eyeW, eyeH)];
+    eyeR = [C4Shape ellipse:CGRectMake(centerPos.x-eyeW/2+45, centerPos.x-eyeH/2-60, eyeW, eyeH)];
+    legL = [C4Shape line:legPointsL];
+    legR = [C4Shape line:legPointsR];
+    
+    eyeL.strokeColor = [UIColor colorWithRed:0.5f green:0.0f blue:0.0f alpha:1.0f];
+    eyeL.fillColor = [UIColor whiteColor];
+    eyeR.strokeColor = [UIColor colorWithRed:0.5f green:0.0f blue:0.0f alpha:1.0f];
+    eyeR.fillColor = [UIColor whiteColor];
+    
+    [self.canvas addShape:body];
+    [self.canvas addShape:head];
+    [self.canvas addShape:eyeL];
+    [self.canvas addShape:eyeR];
+    [self.canvas addShape:legL];
+    [self.canvas addShape:legR];
+}
+
+@end
