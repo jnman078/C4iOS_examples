@@ -8,11 +8,12 @@
 //  
 
 #import "C4WorkSpace.h"
+#import "MyButton.h"
 
 int canvasWidth, canvasHeight;
 CGPoint centerPos;
 
-C4Shape *button1, *button2, *button3;
+MyButton *button1, *button2, *button3;
 CGFloat buttonWidth = 200.0f;
 CGFloat buttonHeight = 200.0f;
 BOOL bgIsWhite, bgIsGray, bgIsBlack;
@@ -27,23 +28,31 @@ BOOL bgIsWhite, bgIsGray, bgIsBlack;
     bgIsGray = NO;
     bgIsWhite = NO;
     
-    button1 = [C4Shape rect:CGRectMake(centerPos.x - buttonWidth/2.0f, 80, buttonWidth, buttonHeight)];
+    button1 = [MyButton new];
+    button2 = [MyButton new];
+    button3 = [MyButton new];
+    
+    [button1 rect:CGRectMake(centerPos.x - buttonWidth/2.0f, 80, buttonWidth, buttonHeight)];
     button1.strokeColor = [UIColor darkGrayColor];
     button1.fillColor = [UIColor blackColor];
     [self.canvas addShape:button1];
     
-    button2 = [C4Shape rect:CGRectMake(centerPos.x - buttonWidth/2.0f, centerPos.y - buttonHeight/2.0f, buttonWidth, buttonHeight)];
+    [button2 rect:CGRectMake(centerPos.x - buttonWidth/2.0f, centerPos.y - buttonHeight/2.0f, buttonWidth, buttonHeight)];
     button2.strokeColor = [UIColor darkGrayColor];
     button2.fillColor = [UIColor grayColor];
     [self.canvas addShape:button2];
     
-    button3 = [C4Shape rect:CGRectMake(centerPos.x - buttonWidth/2.0f, canvasHeight - 280, buttonWidth, buttonHeight)];
+    [button3 rect:CGRectMake(centerPos.x - buttonWidth/2.0f, canvasHeight - 280, buttonWidth, buttonHeight)];
     button3.strokeColor = [UIColor darkGrayColor];
     button3.fillColor = [UIColor whiteColor];
     [self.canvas addShape:button3];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [button1 listenFor:@"touchesBegan" fromObject:button1 andRunMethod:@"methodA"];
+    [button2 listenFor:@"touchesBegan" fromObject:button2 andRunMethod:@"methodB"];
+    [button3 listenFor:@"touchesBegan" fromObject:button3 andRunMethod:@"methodC"];
+    
     [button1 ellipse:CGRectMake(centerPos.x - buttonWidth/2.0f, 80, buttonWidth, buttonHeight)];
     [button2 ellipse:CGRectMake(centerPos.x - buttonWidth/2.0f, centerPos.y - buttonHeight/2.0f, buttonWidth, buttonHeight)];
     [button3 ellipse:CGRectMake(centerPos.x - buttonWidth/2.0f, canvasHeight - 280, buttonWidth, buttonHeight)];

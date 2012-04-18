@@ -8,6 +8,16 @@
 
 #import "C4Object.h"
 
-@interface MyButton : C4Object
+int canvasWidth, canvasHeight;
+CGPoint centerPos;
+//CGFloat buttonWidth = 200.0f;
+//CGFloat buttonHeight = 200.0f;
+
+@interface MyButton : C4Shape
+
+-(void)methodA;
+-(void)methodB;
+-(void)methodC;
+//-(void)methodD;
 
 @end

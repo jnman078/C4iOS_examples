@@ -54,6 +54,7 @@
 		D048A055151D63080047690A /* Math - DoubleRandom in Resources */ = {isa = PBXBuildFile; fileRef = D048A054151D63080047690A /* Math - DoubleRandom */; };
 		D048A05B151D6DF30047690A /* Math - IncrementDecrement in Resources */ = {isa = PBXBuildFile; fileRef = D048A05A151D6DF30047690A /* Math - IncrementDecrement */; };
 		D09D0405153E0793001E1498 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D0404153E0793001E1498 /* MyButton.m */; };
+		D09D042A153E2B41001E1498 /* C4iOS - MutableArray(beta) in Resources */ = {isa = PBXBuildFile; fileRef = D09D0429153E2B41001E1498 /* C4iOS - MutableArray(beta) */; };
 		D09F4EA11523B20F00AAC8EE /* Numbers - NumberObject in Resources */ = {isa = PBXBuildFile; fileRef = D09F4EA01523B20F00AAC8EE /* Numbers - NumberObject */; };
 		D09F4EA41523BE6700AAC8EE /* Transform - Arm in Resources */ = {isa = PBXBuildFile; fileRef = D09F4EA31523BE6600AAC8EE /* Transform - Arm */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,7 @@
 		D048A05A151D6DF30047690A /* Math - IncrementDecrement */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - IncrementDecrement"; sourceTree = "<group>"; };
 		D09D0403153E0793001E1498 /* MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
 		D09D0404153E0793001E1498 /* MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
+		D09D0429153E2B41001E1498 /* C4iOS - MutableArray(beta) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - MutableArray(beta)"; sourceTree = "<group>"; };
 		D09F4EA01523B20F00AAC8EE /* Numbers - NumberObject */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Numbers - NumberObject"; sourceTree = "<group>"; };
 		D09F4EA31523BE6600AAC8EE /* Transform - Arm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Transform - Arm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -293,6 +295,7 @@
 		D048A04F151D599E0047690A /* C4 Examples (beta) */ = {
 			isa = PBXGroup;
 			children = (
+				D09D0429153E2B41001E1498 /* C4iOS - MutableArray(beta) */,
 				D03DBF361538EAF100F0E8CF /* C4iOS - PolygonRotation(beta) */,
 				D048A04D151D59410047690A /* Math - Distance 1D */,
 				D048A054151D63080047690A /* Math - DoubleRandom */,
@@ -400,6 +403,7 @@
 				D03DBF2C1538D72F00F0E8CF /* C4iOS - AnimationCurves in Resources */,
 				D03DBF371538EAF300F0E8CF /* C4iOS - PolygonRotation(beta) in Resources */,
 				D03DBF3D1538F3EE00F0E8CF /* C4iOS - ThreeButtons in Resources */,
+				D09D042A153E2B41001E1498 /* C4iOS - MutableArray(beta) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

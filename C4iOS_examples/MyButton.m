@@ -10,11 +10,23 @@
 
 @implementation MyButton
 
--(id)init {
-    self = [super init];
-    if(self != nil) {
-        //work your magic here
-    }
-    return self;
+-(void)methodA {
+//    canvasWidth = self.canvas.bounds.size.width;
+//    canvasHeight = self.canvas.bounds.size.height;
+//    centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
+    
+    C4Log(@"methodA");
+//    [self ellipse:CGRectMake(centerPos.x - buttonWidth/2.0f, 80, buttonWidth, buttonHeight)];
 }
+-(void)methodB {
+    C4Log(@"methodB");
+}
+-(void)methodC{
+    C4Log(@"methodC");
+}
+
+//-(void)methodD {
+//    C4Log(@"methodD");
+//}
+
 @end

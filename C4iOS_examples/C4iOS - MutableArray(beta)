@@ -1,0 +1,56 @@
+//
+//  C4WorkSpace.m
+//  MutableArrayExp
+//
+//  Created by Jordan Peterson on 12-04-04.
+//  Copyright (c) 2012 ACAD. All rights reserved.
+//
+
+#import "C4WorkSpace.h"
+
+NSMutableArray *mArr;
+C4Shape *orb;
+CGAffineTransform translate;
+CGPoint centerPos;
+int canvasWidth, canvasHeight;
+//int orbWidth, orbHeight;
+int count;
+
+@implementation C4WorkSpace
+
+-(void)setup {
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    centerPos = CGPointMake(canvasWidth/2.0f, canvasHeight/2.0f);
+    count = 19;
+    
+    mArr = [[NSMutableArray alloc] initWithCapacity:0];
+    [orb ellipse:CGRectMake(centerPos.x - 75, centerPos.y - 75, 150, 150)];
+    orb.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:1.0f];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    float angle = [C4Math randomInt:(int)TWO_PI];
+    for (int i = [mArr count]; i >= 0; i--) {
+        orb = [mArr objectAtIndex:i];
+//        [self.canvas addShape:orb];
+        [mArr addObject:orb];
+        
+//  Each orb goes in a random direction from the center for 2 seconds and slowly fades away.
+        orb.animationDuration = 2.0f;
+        orb.animationOptions = EASEOUT;
+        orb.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:0.0f];
+        float x = [C4Math randomInt:(int)0.2f] * 50.0f * [C4Math cos:angle];
+        float y = [C4Math randomInt:(int)0.2f] * 50.0f * [C4Math sin:angle];
+        
+        translate = CGAffineTransformMakeTranslation(x, y);
+        orb.transform = translate;
+        
+//  When an orb fades away, it gets removed from the array.
+//        if (<#condition#>) {
+//            [mArr removeObject:orb];
+//        }
+    }
+}
+
+@end
