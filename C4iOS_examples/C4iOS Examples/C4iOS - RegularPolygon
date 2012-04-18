@@ -16,7 +16,6 @@ C4Shape *regPoly;
 int sides = 5;
 float cRad = 150.0f;
 float sagitta;
-float proportion;
 
 @implementation C4WorkSpace
 
@@ -26,7 +25,6 @@ float proportion;
     centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
     
     sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
-    proportion = [C4Math cos:PI/sides];
     CGPoint regPolyPoints[sides+1];
     for (int i = 0; i <= sides; i++) {
         float angle = TWO_PI * i/sides;

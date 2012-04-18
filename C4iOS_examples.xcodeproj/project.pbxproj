@@ -7,19 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D03579E1152236070002D8DA /* Math - MixedSineWave in Resources */ = {isa = PBXBuildFile; fileRef = D03579E0152236070002D8DA /* Math - MixedSineWave */; };
-		D03579EC1522391C0002D8DA /* Math - ModulusFloat in Resources */ = {isa = PBXBuildFile; fileRef = D03579EB1522391C0002D8DA /* Math - ModulusFloat */; };
-		D03579FA152245600002D8DA /* Math - RandomLines in Resources */ = {isa = PBXBuildFile; fileRef = D03579F9152245600002D8DA /* Math - RandomLines */; };
-		D03579FC152249770002D8DA /* Shapes - PieChart in Resources */ = {isa = PBXBuildFile; fileRef = D03579FB152249770002D8DA /* Shapes - PieChart */; };
-		D03579FE15224D320002D8DA /* Shapes - ShapePrimitives in Resources */ = {isa = PBXBuildFile; fileRef = D03579FD15224D320002D8DA /* Shapes - ShapePrimitives */; };
-		D0357A00152251E10002D8DA /* Shapes - DrawingAnAlien in Resources */ = {isa = PBXBuildFile; fileRef = D03579FF152251E10002D8DA /* Shapes - DrawingAnAlien */; };
-		D0357A021522637F0002D8DA /* Shapes - PointsAndLines in Resources */ = {isa = PBXBuildFile; fileRef = D0357A011522637F0002D8DA /* Shapes - PointsAndLines */; };
-		D0357A0415226B510002D8DA /* Shapes - SimpleCurves in Resources */ = {isa = PBXBuildFile; fileRef = D0357A0315226B510002D8DA /* Shapes - SimpleCurves */; };
-		D0357A061522768E0002D8DA /* Shapes - SineCosineCurves in Resources */ = {isa = PBXBuildFile; fileRef = D0357A051522768D0002D8DA /* Shapes - SineCosineCurves */; };
-		D03DBF2C1538D72F00F0E8CF /* C4iOS - AnimationCurves in Resources */ = {isa = PBXBuildFile; fileRef = D03DBF2B1538D72F00F0E8CF /* C4iOS - AnimationCurves */; };
-		D03DBF371538EAF300F0E8CF /* C4iOS - PolygonRotation(beta) in Resources */ = {isa = PBXBuildFile; fileRef = D03DBF361538EAF100F0E8CF /* C4iOS - PolygonRotation(beta) */; };
-		D03DBF3D1538F3EE00F0E8CF /* C4iOS - ThreeButtons in Resources */ = {isa = PBXBuildFile; fileRef = D03DBF3C1538F3EE00F0E8CF /* C4iOS - ThreeButtons */; };
-		D03F8F83152C03C50054CB4D /* Image - FilterWithOriginal in Resources */ = {isa = PBXBuildFile; fileRef = D03F8F82152C03C50054CB4D /* Image - FilterWithOriginal */; };
 		D0489EB2151D42630047690A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0489EB1151D42630047690A /* AVFoundation.framework */; };
 		D0489EB4151D42630047690A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0489EB3151D42630047690A /* CoreFoundation.framework */; };
 		D0489EB6151D42630047690A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0489EB5151D42630047690A /* CoreGraphics.framework */; };
@@ -50,29 +37,30 @@
 		D0489F0C151D42630047690A /* C4Sky.png in Resources */ = {isa = PBXBuildFile; fileRef = D0489F0B151D42630047690A /* C4Sky.png */; };
 		D0489F0E151D42630047690A /* C4Table.png in Resources */ = {isa = PBXBuildFile; fileRef = D0489F0D151D42630047690A /* C4Table.png */; };
 		D0489F10151D42630047690A /* inception.mov in Resources */ = {isa = PBXBuildFile; fileRef = D0489F0F151D42630047690A /* inception.mov */; };
-		D048A04E151D59410047690A /* Math - Distance 1D in Resources */ = {isa = PBXBuildFile; fileRef = D048A04D151D59410047690A /* Math - Distance 1D */; };
-		D048A055151D63080047690A /* Math - DoubleRandom in Resources */ = {isa = PBXBuildFile; fileRef = D048A054151D63080047690A /* Math - DoubleRandom */; };
-		D048A05B151D6DF30047690A /* Math - IncrementDecrement in Resources */ = {isa = PBXBuildFile; fileRef = D048A05A151D6DF30047690A /* Math - IncrementDecrement */; };
+		D0673282153F473C00372E86 /* C4iOS - AnimationCurves in Resources */ = {isa = PBXBuildFile; fileRef = D067326E153F473C00372E86 /* C4iOS - AnimationCurves */; };
+		D0673283153F473C00372E86 /* C4iOS - MutableArray(beta) in Resources */ = {isa = PBXBuildFile; fileRef = D067326F153F473C00372E86 /* C4iOS - MutableArray(beta) */; };
+		D0673284153F473C00372E86 /* C4iOS - PolygonRotation(beta) in Resources */ = {isa = PBXBuildFile; fileRef = D0673270153F473C00372E86 /* C4iOS - PolygonRotation(beta) */; };
+		D0673285153F473C00372E86 /* C4iOS - RegularPolygon in Resources */ = {isa = PBXBuildFile; fileRef = D0673271153F473C00372E86 /* C4iOS - RegularPolygon */; };
+		D0673286153F473C00372E86 /* C4iOS - ThreeButtons in Resources */ = {isa = PBXBuildFile; fileRef = D0673272153F473C00372E86 /* C4iOS - ThreeButtons */; };
+		D0673287153F473C00372E86 /* Image - FilterWithOriginal in Resources */ = {isa = PBXBuildFile; fileRef = D0673273153F473C00372E86 /* Image - FilterWithOriginal */; };
+		D0673288153F473C00372E86 /* Math - Distance 1D in Resources */ = {isa = PBXBuildFile; fileRef = D0673274153F473C00372E86 /* Math - Distance 1D */; };
+		D0673289153F473C00372E86 /* Math - DoubleRandom in Resources */ = {isa = PBXBuildFile; fileRef = D0673275153F473C00372E86 /* Math - DoubleRandom */; };
+		D067328A153F473C00372E86 /* Math - IncrementDecrement in Resources */ = {isa = PBXBuildFile; fileRef = D0673276153F473C00372E86 /* Math - IncrementDecrement */; };
+		D067328B153F473C00372E86 /* Math - MixedSineWave in Resources */ = {isa = PBXBuildFile; fileRef = D0673277153F473C00372E86 /* Math - MixedSineWave */; };
+		D067328C153F473C00372E86 /* Math - ModulusFloat in Resources */ = {isa = PBXBuildFile; fileRef = D0673278153F473C00372E86 /* Math - ModulusFloat */; };
+		D067328D153F473C00372E86 /* Math - RandomLines in Resources */ = {isa = PBXBuildFile; fileRef = D0673279153F473C00372E86 /* Math - RandomLines */; };
+		D067328E153F473C00372E86 /* Numbers - NumberObject in Resources */ = {isa = PBXBuildFile; fileRef = D067327A153F473C00372E86 /* Numbers - NumberObject */; };
+		D067328F153F473C00372E86 /* Shapes - DrawingAnAlien in Resources */ = {isa = PBXBuildFile; fileRef = D067327B153F473C00372E86 /* Shapes - DrawingAnAlien */; };
+		D0673290153F473C00372E86 /* Shapes - PieChart in Resources */ = {isa = PBXBuildFile; fileRef = D067327C153F473C00372E86 /* Shapes - PieChart */; };
+		D0673291153F473C00372E86 /* Shapes - PointsAndLines in Resources */ = {isa = PBXBuildFile; fileRef = D067327D153F473C00372E86 /* Shapes - PointsAndLines */; };
+		D0673292153F473C00372E86 /* Shapes - ShapePrimitives in Resources */ = {isa = PBXBuildFile; fileRef = D067327E153F473C00372E86 /* Shapes - ShapePrimitives */; };
+		D0673293153F473C00372E86 /* Shapes - SimpleCurves in Resources */ = {isa = PBXBuildFile; fileRef = D067327F153F473C00372E86 /* Shapes - SimpleCurves */; };
+		D0673294153F473C00372E86 /* Shapes - SineCosineCurves in Resources */ = {isa = PBXBuildFile; fileRef = D0673280153F473C00372E86 /* Shapes - SineCosineCurves */; };
+		D0673295153F473C00372E86 /* Transform - Arm in Resources */ = {isa = PBXBuildFile; fileRef = D0673281153F473C00372E86 /* Transform - Arm */; };
 		D09D0405153E0793001E1498 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D0404153E0793001E1498 /* MyButton.m */; };
-		D09D042A153E2B41001E1498 /* C4iOS - MutableArray(beta) in Resources */ = {isa = PBXBuildFile; fileRef = D09D0429153E2B41001E1498 /* C4iOS - MutableArray(beta) */; };
-		D09F4EA11523B20F00AAC8EE /* Numbers - NumberObject in Resources */ = {isa = PBXBuildFile; fileRef = D09F4EA01523B20F00AAC8EE /* Numbers - NumberObject */; };
-		D09F4EA41523BE6700AAC8EE /* Transform - Arm in Resources */ = {isa = PBXBuildFile; fileRef = D09F4EA31523BE6600AAC8EE /* Transform - Arm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D03579E0152236070002D8DA /* Math - MixedSineWave */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - MixedSineWave"; sourceTree = "<group>"; };
-		D03579EB1522391C0002D8DA /* Math - ModulusFloat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - ModulusFloat"; sourceTree = "<group>"; };
-		D03579F9152245600002D8DA /* Math - RandomLines */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - RandomLines"; sourceTree = "<group>"; };
-		D03579FB152249770002D8DA /* Shapes - PieChart */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - PieChart"; sourceTree = "<group>"; };
-		D03579FD15224D320002D8DA /* Shapes - ShapePrimitives */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - ShapePrimitives"; sourceTree = "<group>"; };
-		D03579FF152251E10002D8DA /* Shapes - DrawingAnAlien */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - DrawingAnAlien"; sourceTree = "<group>"; };
-		D0357A011522637F0002D8DA /* Shapes - PointsAndLines */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - PointsAndLines"; sourceTree = "<group>"; };
-		D0357A0315226B510002D8DA /* Shapes - SimpleCurves */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - SimpleCurves"; sourceTree = "<group>"; };
-		D0357A051522768D0002D8DA /* Shapes - SineCosineCurves */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - SineCosineCurves"; sourceTree = "<group>"; };
-		D03DBF2B1538D72F00F0E8CF /* C4iOS - AnimationCurves */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - AnimationCurves"; sourceTree = "<group>"; };
-		D03DBF361538EAF100F0E8CF /* C4iOS - PolygonRotation(beta) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - PolygonRotation(beta)"; sourceTree = "<group>"; };
-		D03DBF3C1538F3EE00F0E8CF /* C4iOS - ThreeButtons */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - ThreeButtons"; sourceTree = "<group>"; };
-		D03F8F82152C03C50054CB4D /* Image - FilterWithOriginal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Image - FilterWithOriginal"; sourceTree = "<group>"; };
 		D0489EAD151D42630047690A /* C4iOS_examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C4iOS_examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0489EB1151D42630047690A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D0489EB3151D42630047690A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -134,14 +122,28 @@
 		D0489F0B151D42630047690A /* C4Sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = C4Sky.png; path = Media/C4Sky.png; sourceTree = "<group>"; };
 		D0489F0D151D42630047690A /* C4Table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = C4Table.png; path = Media/C4Table.png; sourceTree = "<group>"; };
 		D0489F0F151D42630047690A /* inception.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = inception.mov; path = Media/inception.mov; sourceTree = "<group>"; };
-		D048A04D151D59410047690A /* Math - Distance 1D */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - Distance 1D"; sourceTree = "<group>"; };
-		D048A054151D63080047690A /* Math - DoubleRandom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - DoubleRandom"; sourceTree = "<group>"; };
-		D048A05A151D6DF30047690A /* Math - IncrementDecrement */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - IncrementDecrement"; sourceTree = "<group>"; };
+		D067326E153F473C00372E86 /* C4iOS - AnimationCurves */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - AnimationCurves"; sourceTree = "<group>"; };
+		D067326F153F473C00372E86 /* C4iOS - MutableArray(beta) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - MutableArray(beta)"; sourceTree = "<group>"; };
+		D0673270153F473C00372E86 /* C4iOS - PolygonRotation(beta) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - PolygonRotation(beta)"; sourceTree = "<group>"; };
+		D0673271153F473C00372E86 /* C4iOS - RegularPolygon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - RegularPolygon"; sourceTree = "<group>"; };
+		D0673272153F473C00372E86 /* C4iOS - ThreeButtons */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - ThreeButtons"; sourceTree = "<group>"; };
+		D0673273153F473C00372E86 /* Image - FilterWithOriginal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Image - FilterWithOriginal"; sourceTree = "<group>"; };
+		D0673274153F473C00372E86 /* Math - Distance 1D */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - Distance 1D"; sourceTree = "<group>"; };
+		D0673275153F473C00372E86 /* Math - DoubleRandom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - DoubleRandom"; sourceTree = "<group>"; };
+		D0673276153F473C00372E86 /* Math - IncrementDecrement */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - IncrementDecrement"; sourceTree = "<group>"; };
+		D0673277153F473C00372E86 /* Math - MixedSineWave */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - MixedSineWave"; sourceTree = "<group>"; };
+		D0673278153F473C00372E86 /* Math - ModulusFloat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - ModulusFloat"; sourceTree = "<group>"; };
+		D0673279153F473C00372E86 /* Math - RandomLines */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Math - RandomLines"; sourceTree = "<group>"; };
+		D067327A153F473C00372E86 /* Numbers - NumberObject */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Numbers - NumberObject"; sourceTree = "<group>"; };
+		D067327B153F473C00372E86 /* Shapes - DrawingAnAlien */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - DrawingAnAlien"; sourceTree = "<group>"; };
+		D067327C153F473C00372E86 /* Shapes - PieChart */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - PieChart"; sourceTree = "<group>"; };
+		D067327D153F473C00372E86 /* Shapes - PointsAndLines */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - PointsAndLines"; sourceTree = "<group>"; };
+		D067327E153F473C00372E86 /* Shapes - ShapePrimitives */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - ShapePrimitives"; sourceTree = "<group>"; };
+		D067327F153F473C00372E86 /* Shapes - SimpleCurves */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - SimpleCurves"; sourceTree = "<group>"; };
+		D0673280153F473C00372E86 /* Shapes - SineCosineCurves */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - SineCosineCurves"; sourceTree = "<group>"; };
+		D0673281153F473C00372E86 /* Transform - Arm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Transform - Arm"; sourceTree = "<group>"; };
 		D09D0403153E0793001E1498 /* MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
 		D09D0404153E0793001E1498 /* MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
-		D09D0429153E2B41001E1498 /* C4iOS - MutableArray(beta) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - MutableArray(beta)"; sourceTree = "<group>"; };
-		D09F4EA01523B20F00AAC8EE /* Numbers - NumberObject */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Numbers - NumberObject"; sourceTree = "<group>"; };
-		D09F4EA31523BE6600AAC8EE /* Transform - Arm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Transform - Arm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +208,7 @@
 				D0489ED2151D42630047690A /* C4WorkSpace.m */,
 				D09D0403153E0793001E1498 /* MyButton.h */,
 				D09D0404153E0793001E1498 /* MyButton.m */,
-				D048A04F151D599E0047690A /* C4 Examples (beta) */,
+				D067326D153F473C00372E86 /* Examples */,
 				D0489ED6151D42630047690A /* Logos */,
 				D0489EEB151D42630047690A /* Framework */,
 				D0489F08151D42630047690A /* Media */,
@@ -292,30 +294,32 @@
 			name = Media;
 			sourceTree = "<group>";
 		};
-		D048A04F151D599E0047690A /* C4 Examples (beta) */ = {
+		D067326D153F473C00372E86 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				D09D0429153E2B41001E1498 /* C4iOS - MutableArray(beta) */,
-				D03DBF361538EAF100F0E8CF /* C4iOS - PolygonRotation(beta) */,
-				D048A04D151D59410047690A /* Math - Distance 1D */,
-				D048A054151D63080047690A /* Math - DoubleRandom */,
-				D048A05A151D6DF30047690A /* Math - IncrementDecrement */,
-				D03579E0152236070002D8DA /* Math - MixedSineWave */,
-				D03579EB1522391C0002D8DA /* Math - ModulusFloat */,
-				D03579F9152245600002D8DA /* Math - RandomLines */,
-				D03579FF152251E10002D8DA /* Shapes - DrawingAnAlien */,
-				D03579FB152249770002D8DA /* Shapes - PieChart */,
-				D0357A011522637F0002D8DA /* Shapes - PointsAndLines */,
-				D03579FD15224D320002D8DA /* Shapes - ShapePrimitives */,
-				D0357A0315226B510002D8DA /* Shapes - SimpleCurves */,
-				D0357A051522768D0002D8DA /* Shapes - SineCosineCurves */,
-				D09F4EA01523B20F00AAC8EE /* Numbers - NumberObject */,
-				D09F4EA31523BE6600AAC8EE /* Transform - Arm */,
-				D03F8F82152C03C50054CB4D /* Image - FilterWithOriginal */,
-				D03DBF2B1538D72F00F0E8CF /* C4iOS - AnimationCurves */,
-				D03DBF3C1538F3EE00F0E8CF /* C4iOS - ThreeButtons */,
+				D067326E153F473C00372E86 /* C4iOS - AnimationCurves */,
+				D067326F153F473C00372E86 /* C4iOS - MutableArray(beta) */,
+				D0673270153F473C00372E86 /* C4iOS - PolygonRotation(beta) */,
+				D0673271153F473C00372E86 /* C4iOS - RegularPolygon */,
+				D0673272153F473C00372E86 /* C4iOS - ThreeButtons */,
+				D0673273153F473C00372E86 /* Image - FilterWithOriginal */,
+				D0673274153F473C00372E86 /* Math - Distance 1D */,
+				D0673275153F473C00372E86 /* Math - DoubleRandom */,
+				D0673276153F473C00372E86 /* Math - IncrementDecrement */,
+				D0673277153F473C00372E86 /* Math - MixedSineWave */,
+				D0673278153F473C00372E86 /* Math - ModulusFloat */,
+				D0673279153F473C00372E86 /* Math - RandomLines */,
+				D067327A153F473C00372E86 /* Numbers - NumberObject */,
+				D067327B153F473C00372E86 /* Shapes - DrawingAnAlien */,
+				D067327C153F473C00372E86 /* Shapes - PieChart */,
+				D067327D153F473C00372E86 /* Shapes - PointsAndLines */,
+				D067327E153F473C00372E86 /* Shapes - ShapePrimitives */,
+				D067327F153F473C00372E86 /* Shapes - SimpleCurves */,
+				D0673280153F473C00372E86 /* Shapes - SineCosineCurves */,
+				D0673281153F473C00372E86 /* Transform - Arm */,
 			);
-			name = "C4 Examples (beta)";
+			name = Examples;
+			path = "C4iOS Examples";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,25 +389,26 @@
 				D0489F0C151D42630047690A /* C4Sky.png in Resources */,
 				D0489F0E151D42630047690A /* C4Table.png in Resources */,
 				D0489F10151D42630047690A /* inception.mov in Resources */,
-				D048A04E151D59410047690A /* Math - Distance 1D in Resources */,
-				D048A055151D63080047690A /* Math - DoubleRandom in Resources */,
-				D048A05B151D6DF30047690A /* Math - IncrementDecrement in Resources */,
-				D03579E1152236070002D8DA /* Math - MixedSineWave in Resources */,
-				D03579EC1522391C0002D8DA /* Math - ModulusFloat in Resources */,
-				D03579FA152245600002D8DA /* Math - RandomLines in Resources */,
-				D03579FC152249770002D8DA /* Shapes - PieChart in Resources */,
-				D03579FE15224D320002D8DA /* Shapes - ShapePrimitives in Resources */,
-				D0357A00152251E10002D8DA /* Shapes - DrawingAnAlien in Resources */,
-				D0357A021522637F0002D8DA /* Shapes - PointsAndLines in Resources */,
-				D0357A0415226B510002D8DA /* Shapes - SimpleCurves in Resources */,
-				D0357A061522768E0002D8DA /* Shapes - SineCosineCurves in Resources */,
-				D09F4EA11523B20F00AAC8EE /* Numbers - NumberObject in Resources */,
-				D09F4EA41523BE6700AAC8EE /* Transform - Arm in Resources */,
-				D03F8F83152C03C50054CB4D /* Image - FilterWithOriginal in Resources */,
-				D03DBF2C1538D72F00F0E8CF /* C4iOS - AnimationCurves in Resources */,
-				D03DBF371538EAF300F0E8CF /* C4iOS - PolygonRotation(beta) in Resources */,
-				D03DBF3D1538F3EE00F0E8CF /* C4iOS - ThreeButtons in Resources */,
-				D09D042A153E2B41001E1498 /* C4iOS - MutableArray(beta) in Resources */,
+				D0673282153F473C00372E86 /* C4iOS - AnimationCurves in Resources */,
+				D0673283153F473C00372E86 /* C4iOS - MutableArray(beta) in Resources */,
+				D0673284153F473C00372E86 /* C4iOS - PolygonRotation(beta) in Resources */,
+				D0673285153F473C00372E86 /* C4iOS - RegularPolygon in Resources */,
+				D0673286153F473C00372E86 /* C4iOS - ThreeButtons in Resources */,
+				D0673287153F473C00372E86 /* Image - FilterWithOriginal in Resources */,
+				D0673288153F473C00372E86 /* Math - Distance 1D in Resources */,
+				D0673289153F473C00372E86 /* Math - DoubleRandom in Resources */,
+				D067328A153F473C00372E86 /* Math - IncrementDecrement in Resources */,
+				D067328B153F473C00372E86 /* Math - MixedSineWave in Resources */,
+				D067328C153F473C00372E86 /* Math - ModulusFloat in Resources */,
+				D067328D153F473C00372E86 /* Math - RandomLines in Resources */,
+				D067328E153F473C00372E86 /* Numbers - NumberObject in Resources */,
+				D067328F153F473C00372E86 /* Shapes - DrawingAnAlien in Resources */,
+				D0673290153F473C00372E86 /* Shapes - PieChart in Resources */,
+				D0673291153F473C00372E86 /* Shapes - PointsAndLines in Resources */,
+				D0673292153F473C00372E86 /* Shapes - ShapePrimitives in Resources */,
+				D0673293153F473C00372E86 /* Shapes - SimpleCurves in Resources */,
+				D0673294153F473C00372E86 /* Shapes - SineCosineCurves in Resources */,
+				D0673295153F473C00372E86 /* Transform - Arm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
