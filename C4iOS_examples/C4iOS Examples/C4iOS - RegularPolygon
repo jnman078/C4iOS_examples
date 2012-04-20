@@ -26,6 +26,7 @@ float sagitta;
     
     sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
     CGPoint regPolyPoints[sides+1];
+    // You can't have a polygon with less than 3 sides.
     for (int i = 0; i <= sides; i++) {
         float angle = TWO_PI * i/sides;
         regPolyPoints[i].x = cRad * [C4Math cos:angle] + centerPos.x;

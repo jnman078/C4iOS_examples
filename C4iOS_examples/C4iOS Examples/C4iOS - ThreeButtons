@@ -7,20 +7,81 @@
 //  Converted by Jordan Peterson on 12-03-23.
 //  
 
+@interface MyButton : C4Shape {
+    int canvasWidth, canvasHeight;
+    CGPoint centerPos;
+    CGFloat buttonWidth, buttonHeight;
+    BOOL bgIsWhite, bgIsGray, bgIsBlack;
+}
+
+-(CGSize)newSize;
+-(CGRect)newFrame;
+-(void)methodA;
+-(void)methodB;
+-(void)methodC;
+
+@end
+
+@implementation MyButton
+
+-(id)init {
+    self = [super init];
+    if(self != nil) {
+        //
+    }
+    return self;
+}
+
+-(CGSize)newSize {
+    CGSize newSize = self.frame.size;
+    newSize.width /= 2.0f;
+    newSize.height /= 1.5f;
+    return newSize;
+}
+
+-(CGRect)newFrame {
+    CGRect newFrame = self.frame;
+    newFrame.size = [self newSize];
+    return newFrame;
+}
+
+-(void)methodA {
+    C4Log(@"methodA");
+//    [self ellipse:[self newFrame]];
+    [self ellipse:self.frame];
+    bgIsBlack = YES;
+}
+
+-(void)methodB {
+    C4Log(@"methodB");
+//    [self ellipse:[self newFrame]];
+    [self ellipse:self.frame];
+    bgIsGray = YES;
+}
+
+-(void)methodC{
+    C4Log(@"methodC");
+//    [self ellipse:[self newFrame]];
+    [self ellipse:self.frame];
+    bgIsWhite = YES;
+}
+
+@end
+
 #import "C4WorkSpace.h"
-#import "MyButton.h"
 
-int canvasWidth, canvasHeight;
-CGPoint centerPos;
-
-MyButton *button1, *button2, *button3;
-CGFloat buttonWidth = 200.0f;
-CGFloat buttonHeight = 200.0f;
-BOOL bgIsWhite, bgIsGray, bgIsBlack;
-
-@implementation C4WorkSpace
+@implementation C4WorkSpace {
+    int canvasWidth, canvasHeight;
+    CGPoint centerPos;
+    CGFloat buttonWidth, buttonHeight;
+    MyButton *button1, *button2, *button3;
+    BOOL bgIsWhite, bgIsGray, bgIsBlack;
+}
 
 -(void)setup {
+    buttonWidth = 200.0f;
+    buttonHeight = 200.0f;
+    
     canvasWidth = self.canvas.bounds.size.width;
     canvasHeight = self.canvas.bounds.size.height;
     centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
@@ -46,17 +107,13 @@ BOOL bgIsWhite, bgIsGray, bgIsBlack;
     button3.strokeColor = [UIColor darkGrayColor];
     button3.fillColor = [UIColor whiteColor];
     [self.canvas addShape:button3];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     [button1 listenFor:@"touchesBegan" fromObject:button1 andRunMethod:@"methodA"];
     [button2 listenFor:@"touchesBegan" fromObject:button2 andRunMethod:@"methodB"];
     [button3 listenFor:@"touchesBegan" fromObject:button3 andRunMethod:@"methodC"];
-    
-    [button1 ellipse:CGRectMake(centerPos.x - buttonWidth/2.0f, 80, buttonWidth, buttonHeight)];
-    [button2 ellipse:CGRectMake(centerPos.x - buttonWidth/2.0f, centerPos.y - buttonHeight/2.0f, buttonWidth, buttonHeight)];
-    [button3 ellipse:CGRectMake(centerPos.x - buttonWidth/2.0f, canvasHeight - 280, buttonWidth, buttonHeight)];
-    
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {    
     if (bgIsBlack) {
         self.canvas.backgroundColor = [UIColor blackColor];
         bgIsGray = NO;
