@@ -58,6 +58,7 @@
 		D0673294153F473C00372E86 /* Shapes - SineCosineCurves in Resources */ = {isa = PBXBuildFile; fileRef = D0673280153F473C00372E86 /* Shapes - SineCosineCurves */; };
 		D0673295153F473C00372E86 /* Transform - Arm in Resources */ = {isa = PBXBuildFile; fileRef = D0673281153F473C00372E86 /* Transform - Arm */; };
 		D07701851541FBBF001C08DA /* C4iOS - StarPolygon in Resources */ = {isa = PBXBuildFile; fileRef = D07701841541FBBF001C08DA /* C4iOS - StarPolygon */; };
+		D0C58D46154747890030D1D2 /* C4iOS - Labels&Text in Resources */ = {isa = PBXBuildFile; fileRef = D0C58D45154747890030D1D2 /* C4iOS - Labels&Text */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,7 @@
 		D0673280153F473C00372E86 /* Shapes - SineCosineCurves */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shapes - SineCosineCurves"; sourceTree = "<group>"; };
 		D0673281153F473C00372E86 /* Transform - Arm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Transform - Arm"; sourceTree = "<group>"; };
 		D07701841541FBBF001C08DA /* C4iOS - StarPolygon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "C4iOS - StarPolygon"; path = "../C4iOS - StarPolygon"; sourceTree = "<group>"; };
+		D0C58D45154747890030D1D2 /* C4iOS - Labels&Text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C4iOS - Labels&Text"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 				D0673271153F473C00372E86 /* C4iOS - RegularPolygon */,
 				D07701841541FBBF001C08DA /* C4iOS - StarPolygon */,
 				D0673272153F473C00372E86 /* C4iOS - ThreeButtons */,
+				D0C58D45154747890030D1D2 /* C4iOS - Labels&Text */,
 				D0673273153F473C00372E86 /* Image - FilterWithOriginal */,
 				D0673274153F473C00372E86 /* Math - Distance 1D */,
 				D0673275153F473C00372E86 /* Math - DoubleRandom */,
@@ -408,6 +411,7 @@
 				D0673294153F473C00372E86 /* Shapes - SineCosineCurves in Resources */,
 				D0673295153F473C00372E86 /* Transform - Arm in Resources */,
 				D07701851541FBBF001C08DA /* C4iOS - StarPolygon in Resources */,
+				D0C58D46154747890030D1D2 /* C4iOS - Labels&Text in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

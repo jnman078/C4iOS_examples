@@ -6,17 +6,51 @@
 //  Copyright (c) 2012 ACAD. All rights reserved.
 //
 
+////////////////////////////////////////////////////////////////
+// The PARTICLE object
+////////////////////////////////////////////////////////////////
+
+@interface Particle : C4Shape {
+    C4Shape *orb;
+}
+
+-(void)draw;
+
+@end
+
+@implementation Particle
+
+-(id)init {
+    self = [super init];
+    if(self != nil) {
+        //
+    }
+    return self;
+}
+
+-(void)draw {
+    [self ellipse:self.frame];
+    self.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:1.0f];
+}
+
+@end
+
+////////////////////////////////////////////////////////////////
+// The WORKSPACE
+////////////////////////////////////////////////////////////////
+
 #import "C4WorkSpace.h"
 
-NSMutableArray *mArr;
-C4Shape *orb;
-CGAffineTransform translate;
-CGPoint centerPos;
-int canvasWidth, canvasHeight;
-//int orbWidth, orbHeight;
-int count;
-
-@implementation C4WorkSpace
+@implementation C4WorkSpace {
+    NSMutableArray *mArr;
+    Particle *thing;
+    C4Shape *orb;
+    CGAffineTransform translate;
+    CGPoint centerPos;
+    int canvasWidth, canvasHeight;
+    //int orbWidth, orbHeight;
+    int count;
+}
 
 -(void)setup {
     canvasWidth = self.canvas.bounds.size.width;
@@ -24,9 +58,12 @@ int count;
     centerPos = CGPointMake(canvasWidth/2.0f, canvasHeight/2.0f);
     count = 19;
     
+    thing = [Particle new];
     mArr = [[NSMutableArray alloc] initWithCapacity:0];
     [orb ellipse:CGRectMake(centerPos.x - 75, centerPos.y - 75, 150, 150)];
     orb.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:1.0f];
+    
+    [thing listenFor:@"touchesBegan" andRunMethod:@"draw"];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -34,9 +71,10 @@ int count;
     for (int i = [mArr count]; i >= 0; i--) {
         orb = [mArr objectAtIndex:i];
 //        [self.canvas addShape:orb];
-        [mArr addObject:orb];
+//        [mArr addObject:orb];
+        [mArr addObject:thing];
         
-//  Each orb goes in a random direction from the center for 2 seconds and slowly fades away.
+        //  Each orb goes in a random direction from the center for 2 seconds and slowly fades away.
         orb.animationDuration = 2.0f;
         orb.animationOptions = EASEOUT;
         orb.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:0.0f];
@@ -46,10 +84,10 @@ int count;
         translate = CGAffineTransformMakeTranslation(x, y);
         orb.transform = translate;
         
-//  When an orb fades away, it gets removed from the array.
-//        if (<#condition#>) {
-//            [mArr removeObject:orb];
-//        }
+        //  When an orb fades away, it gets removed from the array.
+        //        if (<#condition#>) {
+        //            [mArr removeObject:orb];
+        //        }
     }
 }
 

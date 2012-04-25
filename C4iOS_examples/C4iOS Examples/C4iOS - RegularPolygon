@@ -1,6 +1,6 @@
 //
 //  C4WorkSpace.m
-//  CodeSamples
+//  RegularPolygon
 //
 //  A Cocoa For Artists project
 //  Originally created by Travis Kirton.
@@ -9,20 +9,21 @@
 
 #import "C4WorkSpace.h"
 
-int canvasWidth, canvasHeight;
-CGPoint centerPos;
-
-C4Shape *regPoly;
-int sides = 5;
-float cRad = 150.0f;
-float sagitta;
-
-@implementation C4WorkSpace
+@implementation C4WorkSpace {
+    int canvasWidth, canvasHeight;
+    CGPoint centerPos;
+    C4Shape *regPoly;
+    int sides;
+    float cRad, sagitta;
+}
 
 -(void)setup {
     canvasWidth = self.canvas.bounds.size.width;
     canvasHeight = self.canvas.bounds.size.height;
     centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
+    
+    sides = 5;
+    cRad = 150.0f;
     
     sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
     CGPoint regPolyPoints[sides+1];

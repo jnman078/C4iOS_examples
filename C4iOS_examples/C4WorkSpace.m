@@ -9,44 +9,65 @@
 
 #import "C4WorkSpace.h"
 
-int canvasWidth, canvasHeight;
-CGPoint centerPos;
-
-C4Shape *regPoly, *starPoly;
-int sides = 5;
-float rad, iRad;
-float cRad = 150.0f;
-float sagitta;
-
-@implementation C4WorkSpace
+@implementation C4WorkSpace {
+    C4Shape *arm, *arm01;
+    CGAffineTransform translate1, translate2;
+    CGAffineTransform rotation1, rotation2;
+    CGAffineTransform combo1, combo2, combo3;
+    CGFloat x, y, angle1, angle2, segLength;
+    CGPoint centerPos;
+    int canvasWidth, canvasHeight;
+}
 
 -(void)setup {
     canvasWidth = self.canvas.bounds.size.width;
     canvasHeight = self.canvas.bounds.size.height;
-    centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
+    centerPos = CGPointMake(canvasWidth/2.0f, canvasHeight/2.0f);
     
-    sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
-//    iRad = (cRad * [C4Math sqrt:5.0f])/4;       // Make a perfect 6-pointed star
-//    iRad = cRad - 0.5*cRad/[C4Math cos:PI/5];   // Make a perfect 5-pointed star
-    iRad = cRad - 2*cRad/(1 + [C4Math sqrt:5.0f]);
+    x = 125.0f;
+    y = centerPos.y;
+    angle1 = 0.0f;
+    angle2 = 0.0f;
+    segLength = 200;
     
-    CGPoint starPolyPoints[2*sides];
-    for (int i = 0; i <= 2*sides; i++) {
-        float angle = TWO_PI * i/(2*sides);
-        rad = (i % 2 == 1) ? iRad : cRad;
-        starPolyPoints[i].x = rad * [C4Math cos:angle] + centerPos.x;
-        starPolyPoints[i].y = rad * [C4Math sin:angle] + centerPos.y;
-    }
+    self.canvas.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.05f];
     
-    starPoly = [C4Shape polygon:starPolyPoints pointCount:2*sides+1];
-    starPoly.layer.anchorPoint = CGPointMake(starPoly.center.x, starPoly.center.y + sagitta);
-    [self.canvas addShape:starPoly];
+    CGPoint linePoints[2] = {
+        CGPointMake(0, 0),
+        CGPointMake(segLength, 0)
+    };
+    
+    arm = [C4Shape line:linePoints];
+    arm.layer.anchorPoint = CGPointMake(0.0f, arm.bounds.size.height/2.0f);
+    arm.lineWidth = 50.0f;
+    arm.strokeColor = [UIColor colorWithWhite:1.0f alpha:0.33f];
+    arm.lineCap = CAPROUND;
+    [self.canvas addShape:arm];
+    
+    arm01 = [C4Shape line:linePoints];
+    arm01.layer.anchorPoint = CGPointMake(0.0f, arm01.bounds.size.height/2.0f);
+    arm01.lineWidth = 50.0f;
+    arm01.strokeColor = [UIColor colorWithWhite:1.0f alpha:0.63f];
+    arm01.lineCap = CAPROUND;
+    [self.canvas addShape:arm01];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    regPoly.animationOptions = 10.0f;
-    regPoly.animationOptions = LINEAR | REPEAT;
-    regPoly.transform = CGAffineTransformMakeRotation(PI);
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint touchPoint = [[touches anyObject] locationInView:self.canvas];
+    angle1 = (touchPoint.x/canvasWidth-0.5f)*-1*(CGFloat)PI;
+    angle2 = (touchPoint.y/canvasHeight-0.5f)*(CGFloat)PI;
+    
+    translate1 = CGAffineTransformMakeTranslation(x, y);
+    translate2 = CGAffineTransformMakeTranslation(segLength, 0);
+    rotation1 = CGAffineTransformMakeRotation(angle1);
+    rotation2 = CGAffineTransformMakeRotation(angle2);
+    
+    combo1 = CGAffineTransformConcat(rotation1, translate1);
+    combo2 = CGAffineTransformConcat(rotation2, translate2);
+    combo3 = CGAffineTransformConcat(combo2, combo1);
+    
+    arm.transform = combo1;
+    arm01.transform = combo3;
 }
 
 @end

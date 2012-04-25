@@ -51,7 +51,7 @@ int canvasWidth, canvasHeight;
     [self.canvas addShape:arm01];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint touchPoint = [[touches anyObject] locationInView:self.canvas];
     angle1 = (touchPoint.x/canvasWidth-0.5f)*-1*(CGFloat)PI;
     angle2 = (touchPoint.y/canvasHeight-0.5f)*(CGFloat)PI;

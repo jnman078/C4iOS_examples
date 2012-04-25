@@ -1,0 +1,51 @@
+//
+//  C4WorkSpace.m
+//  CodeSamples
+//
+//  Created by Jordan Peterson on 12-04-04.
+//  Copyright (c) 2012 ACAD. All rights reserved.
+//
+
+#import "C4WorkSpace.h"
+
+@implementation C4WorkSpace {
+    int canvasWidth, canvasHeight;
+    CGPoint centerPos;
+    C4Label *label;
+    C4Shape *text, *circle;
+    C4Font *helvetica;
+}
+ 
+-(void)setup {
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
+    self.canvas.backgroundColor = [UIColor darkGrayColor];
+    
+    helvetica = [C4Font fontWithName:@"helvetica" size:75.0f];
+    text = [C4Shape shapeFromString:@"This is text." withFont:helvetica];
+    text.origin = centerPos;
+    text.layer.anchorPoint = CGPointMake(text.bounds.size.width/2.0f, text.bounds.size.height/2.0f);
+    [self addShape:text];
+    
+    label = [C4Label labelWithText:@"Here is a label"];
+    label.font = [helvetica fontWithSize:80.0f];
+    [label textAlignment];
+    [self.canvas addLabel:label];
+    
+    circle = [C4Shape rect:CGRectMake(centerPos.x, centerPos.y, 100.0f, 100.0f)];
+    circle.layer.anchorPoint = CGPointMake(circle.origin.x - 20.0f, circle.origin.y - 20.0f);
+    [self.canvas addShape:circle];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    label.backgroundColor = C4RED;
+    
+    text.animationDuration = 3.0f;
+    text.transform = CGAffineTransformMakeRotation(PI);
+    
+    circle.animationDuration = 4.0f;
+    circle.transform = CGAffineTransformMakeRotation(3*PI/2);
+}
+
+@end

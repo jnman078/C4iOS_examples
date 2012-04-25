@@ -1,6 +1,6 @@
 //
 //  C4WorkSpace.m
-//  CodeSamples
+//  StarPolygon
 //
 //  A Cocoa For Artists project
 //  Originally created by Travis Kirton.
@@ -9,25 +9,25 @@
 
 #import "C4WorkSpace.h"
 
-int canvasWidth, canvasHeight;
-CGPoint centerPos;
-
-C4Shape *regPoly, *starPoly;
-int sides = 5;
-float rad, iRad;
-float cRad = 150.0f;
-float sagitta;
-
-@implementation C4WorkSpace
+@implementation C4WorkSpace {
+    int canvasWidth, canvasHeight;
+    CGPoint centerPos;
+    C4Shape *starPoly;
+    int sides;
+    float rad, cRad, iRad;
+    float sagitta;
+}
 
 -(void)setup {
+    sides = 5;
+    cRad = 150.0f;
     canvasWidth = self.canvas.bounds.size.width;
     canvasHeight = self.canvas.bounds.size.height;
     centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
     
     sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
-//    iRad = (cRad * [C4Math sqrt:5.0f])/4;       // Make a perfect 6-pointed star
-//    iRad = cRad - 0.5*cRad/[C4Math cos:PI/5];   // Make a perfect 5-pointed star
+    //    iRad = (cRad * [C4Math sqrt:5.0f])/4;       // Make a perfect 6-pointed star
+    //    iRad = cRad - 0.5*cRad/[C4Math cos:PI/5];   // Make a perfect 5-pointed star
     iRad = cRad - 2*cRad/(1 + [C4Math sqrt:5.0f]);
     
     CGPoint starPolyPoints[2*sides];
@@ -44,9 +44,9 @@ float sagitta;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    regPoly.animationOptions = 10.0f;
-    regPoly.animationOptions = LINEAR | REPEAT;
-    regPoly.transform = CGAffineTransformMakeRotation(PI);
+    starPoly.animationOptions = 10.0f;
+    starPoly.animationOptions = LINEAR | REPEAT;
+    starPoly.transform = CGAffineTransformMakeRotation(PI);
 }
 
 @end

@@ -8,12 +8,12 @@
 
 #import "C4WorkSpace.h"
 
-C4Shape *ball1, *ball2, *ball3, *ball4;
-C4Shape *button1, *button2, *button3;
-CGAffineTransform path;
-int canvasWidth, canvasHeight;
-
-@implementation C4WorkSpace
+@implementation C4WorkSpace {
+    C4Shape *ball1, *ball2, *ball3, *ball4;
+    C4Shape *button1, *button2, *button3;
+    CGAffineTransform path;
+    int canvasWidth, canvasHeight;
+}
 
 -(void)setup {
     canvasWidth = self.canvas.bounds.size.width;
