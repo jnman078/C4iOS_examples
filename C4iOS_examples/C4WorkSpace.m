@@ -7,69 +7,96 @@
 //  Converted by Jordan Peterson on 12-03-23.
 //  
 
-// hello
+////////////////////////////////////////////////////////////////
+// The PARTICLE object
+////////////////////////////////////////////////////////////////
+
+@interface Particle : C4Shape {
+    C4Shape *orb;
+}
+
+-(id)initAtPosition:(CGPoint)pos;
+
+-(void)draw;
+
+@end
+
+@implementation Particle
+
+-(id)init {
+    return [self initAtPosition:CGPointMake(0.0f, 0.0f)];
+}
+
+-(id)initAtPosition:(CGPoint)pos {
+    self = [super init];
+    if(self != nil) {
+        //
+    }
+    return self;
+}
+
+-(void)draw {
+    [self ellipse:self.frame];
+    self.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:1.0f];
+}
+
+@end
+
+////////////////////////////////////////////////////////////////
+// The WORKSPACE
+////////////////////////////////////////////////////////////////
 
 #import "C4WorkSpace.h"
 
 @implementation C4WorkSpace {
-    C4Shape *arm, *arm01;
-    CGAffineTransform translate1, translate2;
-    CGAffineTransform rotation1, rotation2;
-    CGAffineTransform combo1, combo2, combo3;
-    CGFloat x, y, angle1, angle2, segLength;
+    NSMutableArray *mArr;
+    Particle *thing;
+    C4Shape *orb;
+    CGAffineTransform translate;
     CGPoint centerPos;
     int canvasWidth, canvasHeight;
+    //int orbWidth, orbHeight;
+    int count;
 }
 
 -(void)setup {
     canvasWidth = self.canvas.bounds.size.width;
     canvasHeight = self.canvas.bounds.size.height;
     centerPos = CGPointMake(canvasWidth/2.0f, canvasHeight/2.0f);
+    count = 19;
     
-    x = 125.0f;
-    y = centerPos.y;
-    angle1 = 0.0f;
-    angle2 = 0.0f;
-    segLength = 200;
+    thing = [Particle new];
+    mArr = [[NSMutableArray alloc] initWithCapacity:0];
+    [orb ellipse:CGRectMake(centerPos.x - 75, centerPos.y - 75, 150, 150)];
+    orb.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:1.0f];
     
-    self.canvas.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.05f];
-    
-    CGPoint linePoints[2] = {
-        CGPointMake(0, 0),
-        CGPointMake(segLength, 0)
-    };
-    
-    arm = [C4Shape line:linePoints];
-    arm.layer.anchorPoint = CGPointMake(0.0f, arm.bounds.size.height/2.0f);
-    arm.lineWidth = 50.0f;
-    arm.strokeColor = [UIColor colorWithWhite:1.0f alpha:0.33f];
-    arm.lineCap = CAPROUND;
-    [self.canvas addShape:arm];
-    
-    arm01 = [C4Shape line:linePoints];
-    arm01.layer.anchorPoint = CGPointMake(0.0f, arm01.bounds.size.height/2.0f);
-    arm01.lineWidth = 50.0f;
-    arm01.strokeColor = [UIColor colorWithWhite:1.0f alpha:0.63f];
-    arm01.lineCap = CAPROUND;
-    [self.canvas addShape:arm01];
+    [thing listenFor:@"touchesBegan" andRunMethod:@"draw"];
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint touchPoint = [[touches anyObject] locationInView:self.canvas];
-    angle1 = (touchPoint.x/canvasWidth-0.5f)*-1*(CGFloat)PI;
-    angle2 = (touchPoint.y/canvasHeight-0.5f)*(CGFloat)PI;
-    
-    translate1 = CGAffineTransformMakeTranslation(x, y);
-    translate2 = CGAffineTransformMakeTranslation(segLength, 0);
-    rotation1 = CGAffineTransformMakeRotation(angle1);
-    rotation2 = CGAffineTransformMakeRotation(angle2);
-    
-    combo1 = CGAffineTransformConcat(rotation1, translate1);
-    combo2 = CGAffineTransformConcat(rotation2, translate2);
-    combo3 = CGAffineTransformConcat(combo2, combo1);
-    
-    arm.transform = combo1;
-    arm01.transform = combo3;
+    float angle = [C4Math randomInt:(int)TWO_PI];
+    for (int i = [mArr count]; i >= 0; i--) {
+        thing = [mArr objectAtIndex:i];
+        
+        [thing draw];
+        [mArr addObject:[[Particle alloc] initAtPosition:touchPoint]];
+        
+        //  Each orb goes in a random direction from the center for 2 seconds and slowly fades away.
+        orb.animationDuration = 2.0f;
+        orb.animationOptions = EASEOUT;
+        orb.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:0.0f];
+        float x = [C4Math randomInt:(int)0.2f] * 50.0f * [C4Math cos:angle];
+        float y = [C4Math randomInt:(int)0.2f] * 50.0f * [C4Math sin:angle];
+        
+        translate = CGAffineTransformMakeTranslation(x, y);
+        orb.transform = translate;
+        
+        //  When an orb fades away, it gets removed from the array.
+        //        if (<#condition#>) {
+        //            [mArr removeObject:orb];
+        //        }
+    }
 }
 
 @end

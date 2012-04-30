@@ -2,9 +2,10 @@
 //  C4WorkSpace.m
 //  CodeSamples
 //
-//  Created by Jordan Peterson on 12-04-04.
-//  Copyright (c) 2012 ACAD. All rights reserved.
-//
+//  A Cocoa For Artists project
+//  Originally created by Travis Kirton.
+//  Converted by Jordan Peterson on 12-03-23.
+//  
 
 #import "C4WorkSpace.h"
 
@@ -15,7 +16,7 @@
     C4Shape *text, *circle;
     C4Font *helvetica;
 }
- 
+
 -(void)setup {
     canvasWidth = self.canvas.bounds.size.width;
     canvasHeight = self.canvas.bounds.size.height;
@@ -30,6 +31,11 @@
     
     label = [C4Label labelWithText:@"Here is a label"];
     label.font = [helvetica fontWithSize:80.0f];
+    label.origin = CGPointMake(centerPos.x/2, centerPos.y - 30.0f);
+    CGRect newFrame = label.frame;
+    newFrame.size = CGSizeMake(200.0f, 200.0f);
+    label.frame = newFrame;
+//    [label sizeThatFits:CGSizeMake(200.0f, 200.0f)];
     [label textAlignment];
     [self.canvas addLabel:label];
     
