@@ -3,26 +3,20 @@
 //  ThreeButtons
 //
 //  A Cocoa For Artists project
-//  Originally created by Travis Kirton.
-//  Converted by Jordan Peterson on 12-03-23.
+//  Created by Jordan Peterson on 12-05-01.
+//  Copyright (c) 2012 ACAD. All rights reserved.
 //  
 
 ////////////////////////////////////////////////////////////////
 // The MYBUTTON Class
 ////////////////////////////////////////////////////////////////
 
-@interface MyButton : C4Shape {
-    int canvasWidth, canvasHeight;
-    CGPoint centerPos;
-    CGFloat buttonWidth, buttonHeight;
-    BOOL bgIsWhite, bgIsGray, bgIsBlack;
-}
+@interface MyButton : C4Shape 
 
 -(CGSize)newSize;
 -(CGRect)newFrame;
--(void)methodA;
--(void)methodB;
--(void)methodC;
+-(void)newShape;
+-(void)resetShape;
 
 @end
 
@@ -49,25 +43,12 @@
     return newFrame;
 }
 
--(void)methodA {
-    C4Log(@"methodA");
-//    [self ellipse:[self newFrame]];
+-(void)newShape {
     [self ellipse:self.frame];
-    bgIsBlack = YES;
 }
 
--(void)methodB {
-    C4Log(@"methodB");
-//    [self ellipse:[self newFrame]];
-    [self ellipse:self.frame];
-    bgIsGray = YES;
-}
-
--(void)methodC{
-    C4Log(@"methodC");
-//    [self ellipse:[self newFrame]];
-    [self ellipse:self.frame];
-    bgIsWhite = YES;
+-(void)resetShape {
+    [self rect:self.frame];
 }
 
 @end
@@ -78,12 +59,17 @@
 
 #import "C4WorkSpace.h"
 
+@interface C4WorkSpace() 
+-(void)setCanvasColorToBlack;
+-(void)setCanvasColorToGrey;
+-(void)setCanvasColorToWhite;
+@end
+
 @implementation C4WorkSpace {
     int canvasWidth, canvasHeight;
     CGPoint centerPos;
     CGFloat buttonWidth, buttonHeight;
     MyButton *button1, *button2, *button3;
-    BOOL bgIsWhite, bgIsGray, bgIsBlack;
 }
 
 -(void)setup {
@@ -93,15 +79,12 @@
     canvasWidth = self.canvas.bounds.size.width;
     canvasHeight = self.canvas.bounds.size.height;
     centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
-    bgIsBlack = YES;
-    bgIsGray = NO;
-    bgIsWhite = NO;
     
     button1 = [MyButton new];
     button2 = [MyButton new];
     button3 = [MyButton new];
     
-    [button1 rect:CGRectMake(centerPos.x - buttonWidth/2.0f, 80, buttonWidth, buttonHeight)];
+    [button1 rect:CGRectMake(centerPos.x - buttonWidth/2.0f, 80.0f, buttonWidth, buttonHeight)];
     button1.strokeColor = [UIColor darkGrayColor];
     button1.fillColor = [UIColor blackColor];
     [self.canvas addShape:button1];
@@ -111,32 +94,47 @@
     button2.fillColor = [UIColor grayColor];
     [self.canvas addShape:button2];
     
-    [button3 rect:CGRectMake(centerPos.x - buttonWidth/2.0f, canvasHeight - 280, buttonWidth, buttonHeight)];
+    [button3 rect:CGRectMake(centerPos.x - buttonWidth/2.0f, canvasHeight - 280.0f, buttonWidth, buttonHeight)];
     button3.strokeColor = [UIColor darkGrayColor];
     button3.fillColor = [UIColor whiteColor];
     [self.canvas addShape:button3];
     
-    [button1 listenFor:@"touchesBegan" fromObject:button1 andRunMethod:@"methodA"];
-    [button2 listenFor:@"touchesBegan" fromObject:button2 andRunMethod:@"methodB"];
-    [button3 listenFor:@"touchesBegan" fromObject:button3 andRunMethod:@"methodC"];
+//    Since all three buttons perform the same two tasks when pushed (ie.
+//    turn into circles & turn the other buttons back into squares), All I really need 
+//    are the two methods defined in the MyButton class (ie. newShape and resetShape). 
+//    If I needed each button to perform a specific task, then I would create three 
+//    separate methods for each button and input their names in the 'andRunMethod' fields below.
+        
+    [button1 listenFor:@"touchesBegan" fromObject:button1 andRunMethod:@"newShape"];
+    [button2 listenFor:@"touchesBegan" fromObject:button2 andRunMethod:@"newShape"];
+    [button3 listenFor:@"touchesBegan" fromObject:button3 andRunMethod:@"newShape"];
+    
+    [button1 listenFor:@"touchesBegan" fromObject:button2 andRunMethod:@"resetShape"];
+    [button1 listenFor:@"touchesBegan" fromObject:button3 andRunMethod:@"resetShape"];
+    [button2 listenFor:@"touchesBegan" fromObject:button1 andRunMethod:@"resetShape"];
+    [button2 listenFor:@"touchesBegan" fromObject:button3 andRunMethod:@"resetShape"];    
+    [button3 listenFor:@"touchesBegan" fromObject:button1 andRunMethod:@"resetShape"];
+    [button3 listenFor:@"touchesBegan" fromObject:button2 andRunMethod:@"resetShape"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCanvasColorToBlack) name:@"touchesBegan" object:button1];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCanvasColorToGrey) name:@"touchesBegan" object:button2];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCanvasColorToWhite) name:@"touchesBegan" object:button3];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {    
-    if (bgIsBlack) {
-        self.canvas.backgroundColor = [UIColor blackColor];
-        bgIsGray = NO;
-        bgIsWhite = NO;
-    }
-    if (bgIsGray) {
-        self.canvas.backgroundColor = [UIColor grayColor];
-        bgIsBlack = NO;
-        bgIsWhite = NO;
-    }
-    if (bgIsWhite) {
-        self.canvas.backgroundColor = [UIColor whiteColor];
-        bgIsBlack = NO;
-        bgIsGray = NO;
-    }
+-(void)setCanvasColorToBlack {
+    self.canvas.backgroundColor = [UIColor blackColor];
+}
+
+-(void)setCanvasColorToGrey {
+    self.canvas.backgroundColor = [UIColor grayColor];
+}
+
+-(void)setCanvasColorToWhite {
+    self.canvas.backgroundColor = [UIColor whiteColor];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    //
 }
 
 @end

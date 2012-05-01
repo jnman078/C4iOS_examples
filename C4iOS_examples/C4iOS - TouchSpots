@@ -1,0 +1,71 @@
+//
+//  C4WorkSpace.m
+//  TouchSpots
+//
+//  A Cocoa For Artists project
+//  Created by Jordan Peterson on 12-05-01.
+//  Copyright (c) 2012 ACAD. All rights reserved.
+//  
+
+////////////////////////////////////////////////////////////////
+// The MYFADER class
+////////////////////////////////////////////////////////////////
+
+@interface MyFader : C4Shape 
+
+-(void)render;
+
+@end
+
+@implementation MyFader
+
+-(id)init {
+    self = [super init];
+    if(self != nil) {
+        //
+    }
+    [self performSelector:@selector(render) withObject:nil afterDelay:1.0f];
+    return self;
+}
+
+-(void)render {
+    self.animationDuration = 2.0f;
+    self.strokeColor = [UIColor clearColor];
+    self.fillColor = [UIColor clearColor];
+    [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:2.05];
+}
+
+@end
+
+////////////////////////////////////////////////////////////////
+// The WORKSPACE
+////////////////////////////////////////////////////////////////
+
+#import "C4WorkSpace.h"
+
+@implementation C4WorkSpace {
+    MyFader *thing;
+    C4Shape *orb;
+    CGPoint touchPoint;
+}
+
+/*
+ 1. track touch
+ 2. create orb
+ 3. add orb to canvas
+ 4. fade out and remove itself
+ */
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor darkGrayColor];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    touchPoint = [[touches anyObject] locationInView:self.canvas];
+    thing = [MyFader new];
+    [thing ellipse:CGRectMake(touchPoint.x-15, touchPoint.y-15, 30, 30)];
+    thing.fillColor = [UIColor colorWithHue:0.0f saturation:1.0f brightness:1.0f alpha:1.0f];
+    [self.canvas addShape:thing];
+}
+
+@end

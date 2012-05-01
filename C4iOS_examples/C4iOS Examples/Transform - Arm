@@ -27,7 +27,7 @@ int canvasWidth, canvasHeight;
     y = centerPos.y;
     angle1 = 0.0f;
     angle2 = 0.0f;
-    segLength = 200;
+    segLength = 200.0f;
     
     self.canvas.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.05f];
     
