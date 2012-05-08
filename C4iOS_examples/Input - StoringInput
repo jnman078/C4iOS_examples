@@ -33,7 +33,7 @@
 
 -(void)ellipse:(CGRect)rect {
     [super ellipse:rect];
-    //    self.fillColor = [UIColor purpleColor];
+//    self.fillColor = [UIColor purpleColor];
     [self performSelector:@selector(render) withObject:nil afterDelay:1.0f];
 }
 
@@ -68,8 +68,8 @@
     touchPoint = [[touches anyObject] locationInView:self.canvas];
     thing = [[MyFader alloc] initWithFrame:CGRectMake(touchPoint.x-orbDiameter/2, touchPoint.y-orbDiameter/2, orbDiameter, orbDiameter)];
     [thing ellipse:thing.frame];
-    //    thing.fillColor = [UIColor colorWithHue:0.5f saturation:1.0f brightness:1.0f alpha:1.0f];
-    //    thing.fillColor = [UIColor colorWithHue:0.8f saturation:1.0f brightness:0.8f alpha:0.5f];
+//    thing.fillColor = [UIColor colorWithHue:0.5f saturation:1.0f brightness:1.0f alpha:1.0f];
+//    thing.fillColor = [UIColor colorWithHue:0.8f saturation:1.0f brightness:0.8f alpha:0.5f];
     thing.strokeColor = [UIColor clearColor];
     [self.canvas addShape:thing];
 }

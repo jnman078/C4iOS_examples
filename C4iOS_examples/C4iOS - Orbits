@@ -1,0 +1,76 @@
+//
+//  C4WorkSpace.m
+//  Orbits
+//
+//  A Cocoa For Artists project
+//  Created by Jordan Peterson on 12-05-01.
+//  Copyright (c) 2012 ACAD. All rights reserved.
+//  
+
+#import "C4WorkSpace.h"
+
+@implementation C4WorkSpace {
+    int canvasWidth, canvasHeight;
+    CGPoint centerPos, touchPoint;
+    CGPoint sunPos, earthPos, moonPos;
+    float sunDiameter, earthDiameter, moonDiameter;
+    float theta, radius;
+    
+    C4Shape *sun, *earth, *moon;
+    CGPoint earthCenter;
+}
+
+-(void)setup {
+    self.canvas.backgroundColor = [UIColor blackColor];
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
+    
+    radius = 250.0f;
+    theta = 0.0f;
+    sunDiameter = 150.0f;
+    earthDiameter = 67.0f;
+    moonDiameter = 25.0f;
+    
+    earthCenter = CGPointMake(earthPos.x + earthDiameter/2.0f, earthPos.y + earthDiameter/2.0f);
+    
+    sunPos = CGPointMake(centerPos.x - sunDiameter/2.0f, centerPos.y - sunDiameter/2.0f);
+    earthPos = CGPointMake(radius * [C4Math cos:theta] + centerPos.x - earthDiameter/2.0f, radius * [C4Math sin:theta] + centerPos.y - earthDiameter/2.0f);
+    moonPos = CGPointMake(radius/2.25f * [C4Math cos:theta] + earthCenter.x - moonDiameter/2.0f, 
+                          radius/2.25f * [C4Math sin:theta] + earthCenter.y - moonDiameter/2.0f);
+    
+    sun = [C4Shape ellipse:CGRectMake(sunPos.x, sunPos.y, sunDiameter, sunDiameter)];
+    sun.fillColor = [UIColor yellowColor];
+    sun.strokeColor = [UIColor orangeColor];
+    [self.canvas addShape:sun];
+    
+    earth = [C4Shape ellipse:CGRectMake(earthPos.x, earthPos.y, earthDiameter, earthDiameter)];
+    earth.strokeColor = [UIColor greenColor];
+    [self.canvas addShape:earth];
+    
+    moon = [C4Shape ellipse:CGRectMake(moonPos.x, moonPos.y, moonDiameter, moonDiameter)];
+    moon.fillColor = [UIColor grayColor];
+    moon.strokeColor = [UIColor darkGrayColor];
+    [self.canvas addShape:moon];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    touchPoint = [[touches anyObject] locationInView:self.canvas];
+    
+    CABasicAnimation *anim1 = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    anim1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    anim1.fromValue = [NSNumber numberWithFloat:0];
+    anim1.toValue = [NSNumber numberWithFloat:(360*M_PI)/180];
+    anim1.repeatCount = HUGE_VALF;
+    anim1.duration = 8.0f;
+//    [earth addAnimation:anim1 forKey:@"transform"];
+    
+//    earth.animationOptions = LINEAR | REPEAT;
+//    earth.animationDuration = 3.0f;
+//    earth.center = centerPos;
+//    
+//    moon.animationOptions = LINEAR | REPEAT;
+//    moon.animationDuration = 1.0f;
+}
+
+@end

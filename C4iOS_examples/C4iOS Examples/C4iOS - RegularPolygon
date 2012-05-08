@@ -35,7 +35,9 @@
     }
     
     regPoly = [C4Shape polygon:regPolyPoints pointCount:sides+1];
-    regPoly.layer.anchorPoint = CGPointMake(regPoly.center.x, regPoly.center.y + sagitta);
+    regPoly.layer.anchorPoint = CGPointMake(0.5f, [C4Math norm:(regPoly.bounds.size.height - sagitta)/2.0f 
+                                                       fromMin:regPoly.origin.y 
+                                                         toMax:regPoly.origin.y + regPoly.bounds.size.height]);
     [self.canvas addShape:regPoly];
 }
 
