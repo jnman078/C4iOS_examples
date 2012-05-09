@@ -24,8 +24,8 @@
     
     sides = 5;
     cRad = 150.0f;
-    
     sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
+    
     CGPoint regPolyPoints[sides+1];
     // You can't have a polygon with less than 3 sides.
     for (int i = 0; i <= sides; i++) {
@@ -35,15 +35,17 @@
     }
     
     regPoly = [C4Shape polygon:regPolyPoints pointCount:sides+1];
-    regPoly.layer.anchorPoint = CGPointMake(0.5f, [C4Math norm:(regPoly.bounds.size.height - sagitta)/2.0f 
-                                                       fromMin:regPoly.origin.y 
-                                                         toMax:regPoly.origin.y + regPoly.bounds.size.height]);
     [self.canvas addShape:regPoly];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     regPoly.animationOptions = 10.0f;
     regPoly.animationOptions = LINEAR | REPEAT;
+    if (sides % 2 == 1) {
+        regPoly.layer.anchorPoint = CGPointMake([C4Math map:(regPoly.bounds.size.width - sagitta)/2.0f 
+                                                    fromMin:0.0f max:regPoly.bounds.size.width 
+                                                      toMin:0.0f max:1.0f], 0.5f);
+    }
     regPoly.transform = CGAffineTransformMakeRotation(PI);
 }
 

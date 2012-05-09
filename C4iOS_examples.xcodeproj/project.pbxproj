@@ -302,6 +302,7 @@
 		D067326D153F473C00372E86 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				D0922F2415587E6C00DE2A86 /* Input - StoringInput */,
 				D0ADD887155077B000D29958 /* C4iOS - TouchSpots */,
 				D0922F331558918400DE2A86 /* C4iOS - Orbits */,
 				D067326E153F473C00372E86 /* C4iOS - AnimationCurves */,
@@ -318,7 +319,6 @@
 				D0673277153F473C00372E86 /* Math - MixedSineWave */,
 				D0673278153F473C00372E86 /* Math - ModulusFloat */,
 				D0673279153F473C00372E86 /* Math - RandomLines */,
-				D0922F2415587E6C00DE2A86 /* Input - StoringInput */,
 				D067327A153F473C00372E86 /* Numbers - NumberObject */,
 				D067327B153F473C00372E86 /* Shapes - DrawingAnAlien */,
 				D067327C153F473C00372E86 /* Shapes - PieChart */,

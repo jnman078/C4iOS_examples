@@ -1,77 +1,55 @@
 //
 //  C4WorkSpace.m
-//  StoringInput
+//  StarPolygon
 //
 //  A Cocoa For Artists project
 //  Created by Jordan Peterson on 12-05-01.
 //  Copyright (c) 2012 ACAD. All rights reserved.
 //  
 
-////////////////////////////////////////////////////////////////
-// The MYFADER class
-////////////////////////////////////////////////////////////////
-
-@interface MyFader : C4Shape 
-
--(id)initWithFrame:(CGRect)frame;
--(void)ellipse:(CGRect)rect;
--(void)render;
-
-@end
-
-@implementation MyFader
-
--(id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if(self != nil) {
-        self.animationDuration = 0.0f;
-        self.fillColor = [UIColor yellowColor];
-        self.strokeColor = [UIColor clearColor];
-    }
-    return self;
-}
-
--(void)ellipse:(CGRect)rect {
-    [super ellipse:rect];
-    //    self.fillColor = [UIColor purpleColor];
-    [self performSelector:@selector(render) withObject:nil afterDelay:1.0f];
-}
-
--(void)render {
-    self.animationDuration = 2.0f;
-    self.strokeColor = [UIColor clearColor];
-    self.fillColor = [UIColor clearColor];
-    self.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-    [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:2.05f];
-}
-
-@end
-
-////////////////////////////////////////////////////////////////
-// The WORKSPACE
-////////////////////////////////////////////////////////////////
-
 #import "C4WorkSpace.h"
 
 @implementation C4WorkSpace {
-    MyFader *thing;
-    CGPoint touchPoint;
-    float orbDiameter;
+    int canvasWidth, canvasHeight;
+    CGPoint centerPos;
+    C4Shape *starPoly;
+    int sides;
+    float rad, cRad, iRad;
+    float sagitta;
 }
 
 -(void)setup {
-    self.canvas.backgroundColor = [UIColor darkGrayColor];
-    orbDiameter = 120.0f;
+    sides = 5;
+    cRad = 150.0f;
+    canvasWidth = self.canvas.bounds.size.width;
+    canvasHeight = self.canvas.bounds.size.height;
+    centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
+    
+    sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
+//    iRad = (cRad * [C4Math sqrt:5.0f])/4;       // Make a perfect 6-pointed star
+//    iRad = cRad - 0.5*cRad/[C4Math cos:PI/5];   // Make a perfect 5-pointed star
+    iRad = cRad - 2*cRad/(1 + [C4Math sqrt:5.0f]);
+    
+    CGPoint starPolyPoints[2*sides];
+    for (int i = 0; i <= 2*sides; i++) {
+        float angle = TWO_PI * i/(2*sides);
+        rad = (i % 2 == 1) ? iRad : cRad;
+        starPolyPoints[i].x = rad * [C4Math cos:angle] + centerPos.x;
+        starPolyPoints[i].y = rad * [C4Math sin:angle] + centerPos.y;
+    }
+    starPoly = [C4Shape polygon:starPolyPoints pointCount:2*sides+1];
+    [self.canvas addShape:starPoly];
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    touchPoint = [[touches anyObject] locationInView:self.canvas];
-    thing = [[MyFader alloc] initWithFrame:CGRectMake(touchPoint.x-orbDiameter/2, touchPoint.y-orbDiameter/2, orbDiameter, orbDiameter)];
-    [thing ellipse:thing.frame];
-    //    thing.fillColor = [UIColor colorWithHue:0.5f saturation:1.0f brightness:1.0f alpha:1.0f];
-    //    thing.fillColor = [UIColor colorWithHue:0.8f saturation:1.0f brightness:0.8f alpha:0.5f];
-    thing.strokeColor = [UIColor clearColor];
-    [self.canvas addShape:thing];
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    starPoly.animationOptions = 10.0f;
+    starPoly.animationOptions = LINEAR | REPEAT;
+    if (sides % 2 == 1) {
+        starPoly.layer.anchorPoint = CGPointMake([C4Math map:(starPoly.bounds.size.width - sagitta)/2.0f 
+                                                     fromMin:0.0f max:starPoly.bounds.size.width 
+                                                       toMin:0.0f max:1.0f], 0.5f);
+    }
+    starPoly.transform = CGAffineTransformMakeRotation(PI);
 }
 
 @end

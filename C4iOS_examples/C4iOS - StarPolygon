@@ -26,8 +26,8 @@
     centerPos = CGPointMake(canvasWidth/2, canvasHeight/2);
     
     sagitta = 2 * cRad * [C4Math square:[C4Math sin:PI/(2*sides)]];
-    //    iRad = (cRad * [C4Math sqrt:5.0f])/4;       // Make a perfect 6-pointed star
-    //    iRad = cRad - 0.5*cRad/[C4Math cos:PI/5];   // Make a perfect 5-pointed star
+//    iRad = (cRad * [C4Math sqrt:5.0f])/4;       // Make a perfect 6-pointed star
+//    iRad = cRad - 0.5*cRad/[C4Math cos:PI/5];   // Make a perfect 5-pointed star
     iRad = cRad - 2*cRad/(1 + [C4Math sqrt:5.0f]);
     
     CGPoint starPolyPoints[2*sides];
@@ -37,15 +37,18 @@
         starPolyPoints[i].x = rad * [C4Math cos:angle] + centerPos.x;
         starPolyPoints[i].y = rad * [C4Math sin:angle] + centerPos.y;
     }
-    
     starPoly = [C4Shape polygon:starPolyPoints pointCount:2*sides+1];
-    starPoly.layer.anchorPoint = CGPointMake(starPoly.center.x, starPoly.center.y + sagitta);
     [self.canvas addShape:starPoly];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     starPoly.animationOptions = 10.0f;
     starPoly.animationOptions = LINEAR | REPEAT;
+    if (sides % 2 == 1) {
+        starPoly.layer.anchorPoint = CGPointMake([C4Math map:(starPoly.bounds.size.width - sagitta)/2.0f 
+                                                     fromMin:0.0f max:starPoly.bounds.size.width 
+                                                       toMin:0.0f max:1.0f], 0.5f);
+    }
     starPoly.transform = CGAffineTransformMakeRotation(PI);
 }
 
